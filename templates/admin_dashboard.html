@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { background: #07020d; display: flex; color: white; min-height: 100vh; width: 100vw; overflow-x: hidden; }
+        
+        /* 📐 SIDEBAR LAYOUT CONFIGURATION */
+        .sidebar { width: 340px; background: #12072b; padding: 35px 25px; position: fixed; height: 100vh; border-right: 3px solid #8b5cf6; z-index: 10; }
+        .sidebar h1 { font-size: 32px; font-weight: 800; color: #d946ef; margin-bottom: 40px; text-shadow: 0 0 8px #d946ef; white-space: nowrap; }
+        
+        /* 🔒 SIDEBAR MENU NAMES */
+        .menu a { 
+            display: block; 
+            padding: 14px 16px; 
+            margin-bottom: 10px; 
+            border-radius: 12px; 
+            text-decoration: none; 
+            color: #c084fc; 
+            font-weight: 800; 
+            font-size: 22px; 
+            transition: 0.3s; 
+            border: 2px solid transparent; 
+            white-space: nowrap;
+        }
+        .menu a:hover, .menu a.active { background: #07020d; color: #f472b6; border-color: #d946ef; box-shadow: 0 0 15px rgba(217, 70, 239, 0.4); }
+        .menu .accent-link { background: rgba(139, 92, 246, 0.2); border: 2px solid #8b5cf6; }
+        
+        /* ⚡ FULL SCREEN WIDTH VIEWPORT */
+        .main { margin-left: 340px; padding: 60px 80px; width: calc(100% - 340px); min-height: 100vh; }
+        
+        /* BIGGER TOPBAR HEADINGS */
+        .topbar h1 { font-size: 56px; font-weight: 800; color: white; }
+        .topbar h3 { color: #c084fc; font-size: 26px; margin-top: 12px; margin-bottom: 60px; }
+        
+        /* STRETCHED HEADER CARDS GRID */
+        .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-bottom: 65px; width: 100%; }
+        .card { background: #12072b; padding: 45px; border-radius: 28px; border: 2px solid #8b5cf6; box-shadow: 0 8px 25px rgba(0,0,0,0.6); }
+        .card p { color: #f472b6; font-size: 18px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; white-space: nowrap; }
+        .card h2 { font-size: 56px; font-weight: 800; margin-top: 16px; color: white; }
+        
+        /* LARGE EXPANDED TABLE CONTAINER */
+        .employee-table { background: #12072b; padding: 55px; border-radius: 32px; border: 2px solid #8b5cf6; box-shadow: 0 10px 30px rgba(0,0,0,0.5); width: 100%; }
+        .table-header-container { display: flex; justify-content: space-between; align-items: center; margin-bottom: 45px; }
+        .table-header-container h2 { font-size: 36px; font-weight: 700; color: #d946ef; }
+        
+        /* ADD ADMIN BUTTON STYLE */
+        .btn-add-admin { background: #d946ef; color: white; text-decoration: none; padding: 16px 32px; border-radius: 16px; font-size: 20px; font-weight: 800; transition: 0.3s; box-shadow: 0 0 15px #d946ef; white-space: nowrap; }
+        .btn-add-admin:hover { transform: translateY(-3px); box-shadow: 0 0 30px #d946ef; }
+        
+        table { width: 100%; border-collapse: collapse; }
+        th { background: #07020d; padding: 28px 24px; text-align: left; font-size: 22px; font-weight: 700; color: #f472b6; border-bottom: 4px solid #d946ef; white-space: nowrap; }
+        td { padding: 32px 24px; font-size: 20px; border-bottom: 2px solid #2e1065; color: #e9d5ff; white-space: nowrap; }
+        
+        /* AVATAR IMAGES */
+        .profile { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 2px solid #d946ef; }
+        
+        /* 🔒 ACTIONS CELL */
+        .actions-cell { display: flex; align-items: center; gap: 16px; white-space: nowrap; }
+        
+        .action-btn { padding: 16px 28px; border-radius: 16px; border: none; color: white; cursor: pointer; text-decoration: none; font-size: 18px; font-weight: 700; display: inline-block; transition: 0.3s; white-space: nowrap; }
+        .edit { background: rgba(139, 92, 246, 0.3); color: #c084fc; border: 2px solid #8b5cf6; }
+        .edit:hover { background: #8b5cf6; color: white; }
+        .delete { background: rgba(244, 114, 182, 0.2); color: #f472b6; border: 2px solid #f472b6; }
+        .delete:hover { background: #d946ef; color: white; }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h1>EMS ADMIN</h1>
+        <div class="menu">
+            <a href="/company_info">Company Info</a>
+            <a href="/admin_dashboard" class="active">Admin List</a>
+            <a href="/admin_employees">Employee List</a>
+            <a href="/add_employee">Add Employee</a>
+            <a href="/dashboard" class="accent-link">View Predictions</a>
+            <a href="/logout" style="margin-top: 50px; color: #f472b6;">Sign Out</a>
+        </div>
+    </div>
+    <div class="main">
+        <div class="topbar">
+            <h1>Admin Control Panel</h1>
+            <h3>All System Administrators</h3>
+        </div>
+        <div class="cards">
+            <div class="card">
+                <p>Total Employees</p>
+                <h2>{{ total_count }}</h2>
+            </div>
+            <div class="card">
+                <p>High Risk of Leaving</p>
+                <h2 style="color: #f472b6;">{{ high_risk }}</h2>
+            </div>
+            <div class="card">
+                <p>Likely to Stay</p>
+                <h2 style="color: #c084fc;">{{ low_risk }}</h2>
+            </div>
+        </div>
+        <div class="employee-table">
+            <div class="table-header-container">
+                <h2>Admin Profiles</h2>
+                <a href="/add_admin" class="btn-add-admin">+ Add New Admin</a>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Avatar</th>
+                        <th>User ID</th>
+                        <th>Full Name</th>
+                        <th>Email Address</th>
+                        <th>Department</th>
+                        <th>Role / Title</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for emp in employees %}
+                    <tr>
+                        <td><img class="profile" src="{{ url_for('static', filename='uploads/' + emp[8]) }}" onerror="this.src='https://via.placeholder.com/80'"></td>
+                        <td><code style="font-size: 18px;">{{ emp[1] }}</code></td>
+                        <td style="font-weight: 700; color: white;">{{ emp[2] }}</td>
+                        <td>{{ emp[3] }}</td>
+                        <td>{{ emp[6] }}</td>
+                        
+                        <td style="font-weight: 700; color: #38bdf8; text-transform: capitalize;">{{ emp[5] }}</td>
+                        
+                        <td>
+                            <div class="actions-cell">
+                                <a href="/edit_profile/{{ emp[0] }}" class="action-btn edit">Modify</a>
+                                <a href="/delete_employee/{{ emp[0] }}" onclick="return confirm('Delete this admin profile?');" class="action-btn delete">Delete</a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New User</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        
+        /* ⚡️ STRIPS OUT CONSTRAINTS TO OCCUPY 100% VIEWPORT WIDTH AND HEIGHT */
+        body { 
+            background: #07020d; 
+            min-height: 100vh; 
+            width: 100vw;
+            display: flex; 
+            color: white; 
+            overflow-x: hidden;
+        }
+        
+        /* ⚡️ FULL SCREEN GRID WRAPPER MATRIX split side-by-side */
+        .workspace-wrapper { 
+            display: flex; 
+            width: 100%; 
+            min-height: 100vh;
+            background: #12072b; 
+        }
+
+        /* 🎨 LEFT COLUMN: ACCENT BRAND PANEL (STRETCHED HEIGHT) */
+        .info-panel { 
+            width: 25%; /* Slightly narrower ratio to give more row room for inputs */
+            background: linear-gradient(145deg, #1e0b4a, #0c041e); 
+            padding: 80px 50px; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: space-between; 
+            border-right: 3px solid #8b5cf6; 
+            position: fixed;
+            height: 100vh;
+        }
+       .info-panel-header h2 { 
+    font-size: 56px;           /* ৪৬px থেকে বাড়িয়ে ৫৬px করা হয়েছে */
+    font-weight: 800; 
+    color: #d946ef; 
+    line-height: 1.15; 
+    text-shadow: 0 0 20px rgba(217, 70, 239, 0.5); /* গ্লো ইফেক্ট বাড়ানো হয়েছে */
+}
+
+.info-panel-header p { 
+    font-size: 24px;           /* ২০px থেকে বাড়িয়ে ২৪px করা হয়েছে */
+    color: #c084fc; 
+    margin-top: 24px; 
+    font-weight: 600; 
+    line-height: 1.4;
+}
+
+.brand-hint { 
+    background: rgba(34, 197, 94, 0.1); 
+    border-left: 6px solid #22c55e; /* বর্ডার একটু মোটা করা হয়েছে */
+    padding: 32px;             /* ২৫px থেকে বাড়িয়ে ৩২px করা হয়েছে */
+    border-radius: 0 20px 20px 0; 
+    margin-top: 60px;          /* ৫০px থেকে বাড়িয়ে ৬০px করা হয়েছে */
+}
+
+.brand-hint h4 { 
+    color: #22c55e; 
+    font-size: 26px;           /* ২০px থেকে বাড়িয়ে ২৬px করা হয়েছে */
+    font-weight: 700; 
+    margin-bottom: 12px; 
+}
+
+.brand-hint p { 
+    color: #e9d5ff; 
+    font-size: 20px;           /* ১৬px থেকে বাড়িয়ে ২০px করা হয়েছে */
+    line-height: 1.6; 
+}
+
+        /* 📐 RIGHT COLUMN: OCCUPIES REMAINING 100% SCREEN WIDTH WITH AMPLE BREATHING ROOM */
+        .grid-panel { 
+            width: 75%; 
+            margin-left: 25%; /* Offsets the fixed side panel perfectly */
+            padding: 80px 100px; 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        form { width: 100%; }
+
+        .input-matrix { 
+            display: grid; 
+            grid-template-columns: repeat(2, 1fr); 
+            gap: 40px; 
+            width: 100%;
+        }
+        
+        .full-width-field { grid-column: span 2; }
+
+        .matrix-field { display: flex; flex-direction: column; }
+        .matrix-field label { font-size: 16px; font-weight: 700; color: #f472b6; margin-bottom: 14px; text-transform: uppercase; letter-spacing: 1px; }
+        
+        .matrix-field input, .matrix-field select { 
+            width: 100%; 
+            padding: 20px 24px; 
+            border-radius: 16px; 
+            border: 2px solid #8b5cf6; 
+            background: #07020d; 
+            color: white; 
+            font-size: 19px; 
+            outline: none; 
+            transition: 0.3s; 
+        }
+        .matrix-field input:focus, .matrix-field select:focus { border-color: #22c55e; box-shadow: 0 0 20px rgba(34, 197, 94, 0.4); }
+        
+        /* Dashed upload panel */
+        .file-upload-box { background: #07020d; border: 2px dashed #8b5cf6; border-radius: 16px; padding: 18px 24px; display: flex; align-items: center; cursor: pointer; transition: 0.3s; }
+        .file-upload-box:hover { border-color: #d946ef; background: rgba(217, 70, 239, 0.02); }
+        .file-upload-box input[type="file"] { border: none; background: transparent; padding: 0; margin: 0; cursor: pointer; font-size: 18px; }
+
+        /* ⚡️ MASSIVE FULL WIDTH DISPATCH DEPLOY BUTTON */
+        .submit-container { margin-top: 60px; display: flex; align-items: center; width: 100%; }
+        
+        button { 
+            width: 100%;
+            padding: 22px; 
+            background: linear-gradient(135deg, #22c55e, #8b5cf6); 
+            color: #07020d; 
+            border: none; 
+            border-radius: 18px; 
+            font-size: 22px; 
+            font-weight: 800; 
+            cursor: pointer; 
+            transition: 0.3s; 
+            box-shadow: 0 8px 25px rgba(34, 197, 94, 0.3); 
+        }
+        button:hover { transform: translateY(-3px); color: white; box-shadow: 0 0 40px #22c55e; }
+        
+        .back-link { 
+            color: #c084fc; 
+            text-decoration: none; 
+            font-size: 18px; 
+            font-weight: 700; 
+            white-space: nowrap;
+            transition: 0.2s;
+        }
+        .back-link:hover { color: #d946ef; text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <div class="workspace-wrapper">
+        
+       <div class="info-panel">
+    <div class="info-panel-header">
+        <h2>Add New User</h2>
+        <p>Register new profiles instantly into the system database.</p>
+        
+        <div class="brand-hint">
+            <h4>Important Check</h4>
+            <p>Double-check email addresses and roles before creating the account.</p>
+        </div>
+    </div>
+            
+            <a href="/admin_dashboard" class="back-link">← Cancel and Exit View</a>
+        </div>
+
+        <div class="grid-panel">
+            <form action="/save_employee" method="POST" enctype="multipart/form-data">
+                
+                <div class="input-matrix">
+                    
+                    <div class="matrix-field">
+                        <label>Employee ID</label>
+                        <input type="text" name="employee_id" placeholder="e.g. EMP8890" required>
+                    </div>
+
+                    <div class="matrix-field">
+                        <label>Full Name</label>
+                        <input type="text" name="name" placeholder="Enter Name" required>
+                    </div>
+
+                    <div class="matrix-field">
+                        <label>Email Address</label>
+                        <input type="email" name="email" placeholder="Enter E-mail" required>
+                    </div>
+
+                    <div class="matrix-field">
+                        <label>Account Password</label>
+                        <input type="password" name="password" placeholder="••••••••" required>
+                    </div>
+
+                    <div class="matrix-field">
+                        <label>Role Scope Privilege</label>
+                        <select name="role" required>
+                            <option value="employee">Standard Employee</option>
+                            <option value="admin">Administrator</option>
+                        </select>
+                    </div>
+
+                    <div class="matrix-field">
+                        <label>Department</label>
+                        <input type="text" name="department" placeholder="Engineering Operations" required>
+                    </div>
+
+                    <div class="matrix-field">
+                        <label>Home Address</label>
+                        <input type="text" name="address" placeholder="City, Country" required>
+                    </div>
+
+                    <div class="matrix-field">
+                        <label>Monthly Salary ($)</label>
+                        <input type="text" name="salary" placeholder="e.g. 50000" required>
+                    </div>
+
+                    <div class="matrix-field full-width-field">
+                        <label>Upload Profile Image</label>
+                        <div class="file-upload-box">
+                            <input type="file" name="image">
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="submit-container">
+                    <button type="submit">Save Profile Parameters</button>
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+
+</body>
+</html>

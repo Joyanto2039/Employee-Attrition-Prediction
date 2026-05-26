@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Attrition Prediction Dashboard</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            width: 100vw;
+            background: radial-gradient(circle at center, #1a1a1a 0%, #050505 100%);
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* =========================
+           DELETE BUTTON
+        ========================= */
+        .delete-cell {
+            position: relative;
+        }
+
+        .delete-btn {
+            opacity: 0;
+            transform: translateY(10px);
+            transition: 0.3s ease;
+            background: rgba(239, 68, 68, 0.9);
+            color: white;
+            padding: 10px 16px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-block;
+            box-shadow: 0 0 15px rgba(239, 68, 68, 0.4);
+        }
+
+        tr:hover .delete-btn {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* =========================
+           EXIT SYSTEM BUTTON
+        ========================= */
+        .top-bar {
+            position: fixed;
+            top: 25px;
+            left: 25px;
+            z-index: 1000;
+        }
+
+        .btn {
+            padding: 18px 36px;
+            border-radius: 12px;
+            background: rgba(0, 255, 136, 0.05);
+            backdrop-filter: blur(12px);
+            border: 2px solid rgba(0, 255, 136, 0.6);
+            color: #00ff88;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: inline-block;
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.15);
+        }
+
+        .btn:hover {
+            background: #00ff88;
+            color: #000;
+            box-shadow: 0 0 40px rgba(0, 255, 136, 0.9);
+            transform: scale(1.08);
+        }
+
+        /* =========================
+           DASHBOARD HEADER
+        ========================= */
+        .header {
+            width: 100%;
+            padding: 60px 20px 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 48px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            background: linear-gradient(to bottom, #fff 40%, #00ff88 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 20px rgba(0, 255, 136, 0.4));
+            animation: titlePulse 4s infinite ease-in-out;
+        }
+
+        @keyframes titlePulse {
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.9;
+                transform: scale(1.01);
+            }
+        }
+
+        /* =========================
+           RESULT CARD
+        ========================= */
+        .result {
+            margin: 0 auto 45px;
+            width: fit-content;
+            padding: 22px 70px;
+            border-radius: 18px;
+            font-size: 44px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border: 3px solid;
+            background: rgba(15, 15, 15, 0.78);
+            backdrop-filter: blur(8px);
+            transition: all 0.4s ease;
+            box-shadow: 0 0 10px rgba(255,255,255,0.04), inset 0 0 15px rgba(255,255,255,0.03);
+            text-shadow: 0 0 4px rgba(255,255,255,0.08);
+        }
+
+        /* EMPLOYEE WILL STAY */
+        .result.stay {
+            color: #00ff66;
+            border-color: #00ff66;
+            background: rgba(0, 25, 0, 0.35);
+            text-shadow: 0 0 4px rgba(0,255,102,0.45), 0 0 8px rgba(0,255,102,0.25);
+            box-shadow: 0 0 10px rgba(0,255,102,0.22), inset 0 0 12px rgba(0,255,102,0.06);
+        }
+
+        /* EMPLOYEE MAY LEAVE */
+        .result.leave {
+            color: #ffcc00;
+            border-color: #ffcc00;
+            background: rgba(40, 25, 0, 0.3);
+            text-shadow: 0 0 4px rgba(255,204,0,0.35);
+            box-shadow: 0 0 10px rgba(255,204,0,0.15), inset 0 0 10px rgba(255,204,0,0.05);
+        }
+
+        /* HIGH RISK */
+        .result.highrisk {
+            color: #ff4d4d;
+            border-color: #ff4d4d;
+            background: rgba(40, 0, 0, 0.3);
+            text-shadow: 0 0 4px rgba(255,77,77,0.4);
+            box-shadow: 0 0 10px rgba(255,77,77,0.18), inset 0 0 10px rgba(255,77,77,0.05);
+        }
+
+        /* =========================
+           KPI CARDS
+        ========================= */
+        .kpi {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            padding: 0 50px 45px;
+        }
+
+        .card {
+            flex: 1;
+            max-width: 380px;
+            padding: 35px;
+            border-radius: 24px;
+            background: linear-gradient(145deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            border-color: rgba(0, 255, 136, 0.5);
+            transform: translateY(-8px);
+        }
+
+        .card h3 {
+            color: #aaa;
+            font-size: 14px;
+            letter-spacing: 3px;
+            margin-bottom: 18px;
+            text-transform: uppercase;
+        }
+
+        .card .value {
+            font-size: 58px;
+            font-weight: 900;
+            color: #00ff88;
+        }
+
+        /* =========================
+           MAIN LAYOUT
+        ========================= */
+        .main {
+            display: grid;
+            grid-template-columns: 1.6fr 1fr;
+            gap: 35px;
+            padding: 0 50px 60px;
+        }
+
+        .table-box,
+        .chart-box {
+            background: rgba(10, 10, 10, 0.7);
+            backdrop-filter: blur(25px);
+            border-radius: 30px;
+            padding: 40px;
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+        }
+
+        /* =========================
+           TABLE STYLING
+        ========================= */
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 12px;
+        }
+
+        th {
+            color: #00ff88;
+            padding: 18px;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-align: center;
+            border-bottom: 2px solid rgba(0, 255, 136, 0.3);
+        }
+
+        td {
+            padding: 24px;
+            text-align: center;
+            font-size: 24px;
+            background: rgba(255,255,255,0.03);
+            transition: 0.2s;
+        }
+
+        tr:hover td {
+            background: rgba(255,255,255,0.07);
+        }
+
+        tr td:first-child {
+            border-radius: 15px 0 0 15px;
+            font-weight: bold;
+        }
+
+        tr td:last-child {
+            border-radius: 0 15px 15px 0;
+        }
+
+        /* =========================
+           CHART
+        ========================= */
+        .chart-container {
+            position: relative;
+            height: 420px;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="top-bar">
+    <a href="/admin_dashboard" class="btn">← EXIT SYSTEM</a>
+</div>
+
+<div class="header">
+    <h1>Employee Attrition Prediction Dashboard</h1>
+</div>
+
+{% if last %}
+    {% if last.prediction == 'Stay' and last.risk_status == 'Low' %}
+    <div class="result stay">
+        Employee Will Stay
+    </div>
+    {% elif last.prediction == 'Leave' and last.risk_status == 'High' %}
+    <div class="result highrisk">
+        Critical Attrition Risk Detected
+    </div>
+    {% else %}
+    <div class="result leave">
+        Employee May Leave Company
+    </div>
+    {% endif %}
+{% endif %}
+
+<div class="kpi">
+    <div class="card">
+        <h3>Total Records</h3>
+        <div class="value">{{ data|length }}</div>
+    </div>
+
+    <div class="card">
+        <h3>Safety Index</h3>
+        <div class="value">{{ avg_stay }}%</div>
+    </div>
+
+    <div class="card">
+        <h3>Risk Factor</h3>
+        <div class="value" style="color: #ff3b3b;">{{ avg_leave }}%</div>
+    </div>
+</div>
+
+<div class="main">
+    <div class="table-box">
+        <table>
+            <thead>
+                <tr>
+                    <th>Identifier</th>
+                    <th>User ID</th>
+                    <th>Prediction</th>
+                    <th>Stay %</th>
+                    <th>Leave %</th>
+                    <th>Status</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in data %}
+                <tr>
+                    <td>#{{ loop.index }}</td>
+                    
+                    <td class="random-userid-color" style="font-family: 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-weight: 700; letter-spacing: 0.5px;">
+                        {{ row[5] if row[5] else 'N/A' }}
+                    </td>
+
+                    <td style="font-weight: 800; color: #fff;">
+                        {% if row[1] == 'Stay' and row[4] == 'Low' %}
+                            Employee Will Stay
+                        {% elif row[1] == 'Leave' and row[4] == 'High' %}
+                            Critical Attrition Risk Detected
+                        {% else %}
+                            Employee May Leave Company
+                        {% endif %}
+                    </td>
+
+                    <td style="color: #ffd700; font-weight: bold;">
+                        {{ row[2] }}%
+                    </td>
+
+                    <td style="color: #ff3b3b; font-weight: bold;">
+                        {{ row[3] }}%
+                    </td>
+
+                    <td>
+                        <span style="
+                            display: inline-block;
+                            padding: 10px 20px;
+                            border-radius: 10px;
+                            font-size: 18px;
+                            font-weight: 700;
+                            border: 1px solid;
+                            {% if 'Low' in row[4] %}
+                                background: rgba(0, 255, 136, 0.18);
+                                color: #00ff88;
+                                border-color: rgba(0, 255, 136, 0.7);
+                                box-shadow: 0 0 10px rgba(0, 255, 136, 0.35);
+                            {% elif 'Medium' in row[4] %}
+                                background: rgba(255, 193, 7, 0.18);
+                                color: #ffc107;
+                                border-color: rgba(255, 193, 7, 0.7);
+                                box-shadow: 0 0 10px rgba(255, 193, 7, 0.35);
+                            {% else %}
+                                background: rgba(255, 59, 59, 0.18);
+                                color: #ff3b3b;
+                                border-color: rgba(255, 59, 59, 0.7);
+                                box-shadow: 0 0 10px rgba(255, 59, 59, 0.35);
+                            {% endif %}
+                        ">
+                            {% if row[4] == 'Low' %}Low Risk{% elif row[4] == 'Medium' %}Medium Risk{% else %}High Risk{% endif %}
+                        </span>
+                    </td>
+
+                    <td class="delete-cell">
+                        <a href="/delete/{{ row[0] }}" class="delete-btn">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="chart-box">
+        <h3 style="text-align: center; color: #777; margin-bottom: 30px; text-transform: uppercase; font-size: 14px; letter-spacing: 5px;">
+            Probability Insights
+        </h3>
+        <div class="chart-container">
+            <canvas id="pie"></canvas>
+        </div>
+    </div>
+</div>
+
+<script>
+// ✨ DYNAMIC COLOR MATRIX SCRIPT FOR THE USER ID COLUMN
+document.addEventListener("DOMContentLoaded", function() {
+    const userElements = document.querySelectorAll(".random-userid-color");
+    userElements.forEach(element => {
+        // Generates bright neon-spectrum HSL values to ensure crisp visibility on dark theme backgrounds
+        const randomHue = Math.floor(Math.random() * 360);
+        element.style.color = `hsl(${randomHue}, 100%, 65%)`;
+    });
+});
+
+const data = {{ data | tojson }};
+let stayCount = data.length
+    ? data.reduce((sum, r) => sum + Number(r[2]), 0) / data.length
+    : 0;
+
+let leaveCount = data.length
+    ? data.reduce((sum, r) => sum + Number(r[3]), 0) / data.length
+    : 0;
+
+new Chart(document.getElementById('pie'), {
+    type: 'doughnut',
+    data: {
+        labels: ['STAY', 'LEAVE'],
+        datasets: [{
+            data: [stayCount, leaveCount],
+            backgroundColor: ['#ffd700', '#ff3b3b'],
+            hoverOffset: 30,
+            borderWidth: 0,
+            borderRadius: 12,
+            spacing: 8
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        cutout: '78%',
+        plugins: {
+            legend: {
+                position: 'bottom',
+                labels: {
+                    color: '#ccc',
+                    padding: 35,
+                    font: {
+                        size: 15,
+                        weight: 'bold'
+                    },
+                    usePointStyle: true
+                }
+            }
+        }
+    }
+});
+</script>
+
+</body>
+</html>

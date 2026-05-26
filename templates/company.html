@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XENON IT | Company Profile</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* 🌑 CORE FOUR-COLOR IDENTITY SYSTEM */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            background-color: #04010a; 
+            display: flex; 
+            color: #ffffff; 
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh; 
+            width: 100vw; 
+            overflow-x: hidden; 
+        }
+
+        /* 🛡️ CYBER SIDEBAR */
+        .sidebar { 
+            width: 340px; 
+            background: #0d0621; 
+            padding: 40px 25px; 
+            position: fixed; 
+            height: 100vh; 
+            border-right: 3px solid #8b5cf6; 
+            z-index: 100;
+            box-shadow: 10px 0 30px rgba(139, 92, 246, 0.15);
+        }
+
+        .sidebar h1 { 
+            font-family: 'Orbitron', sans-serif;
+            font-size: 32px; 
+            font-weight: 900; 
+            color: #d946ef; 
+            margin-bottom: 50px; 
+            letter-spacing: 3px;
+            text-shadow: 0 0 15px rgba(217, 70, 239, 0.6);
+            text-transform: uppercase;
+        }
+
+        /* 🔗 MENU LINKS (22PX & 800 WEIGHT STANDARD) */
+        .menu {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .menu a { 
+            display: block; 
+            padding: 12px 20px; 
+            text-decoration: none; 
+            color: #c084fc; 
+            font-weight: 800; 
+            font-size: 22px;   
+            border-radius: 14px; 
+            transition: 0.3s; 
+            border: 2px solid transparent; 
+            width: 100%;
+            text-align: left;
+            white-space: nowrap;
+        }
+
+        .menu a:hover {
+            background: rgba(217, 70, 239, 0.05);
+            color: #f472b6;
+        }
+
+        /* 🟢 EXCLUSIVE CYAN SELECTION FOR CURRENT PAGE */
+        .menu a.active { 
+            color: #00f5d4; 
+            border: 2px solid #00f5d4; 
+            box-shadow: 0 0 15px rgba(0, 245, 212, 0.3), inset 0 0 10px rgba(0, 245, 212, 0.1);
+            text-shadow: 0 0 8px rgba(0, 245, 212, 0.4);
+        }
+
+        .menu .accent-link { 
+            color: #c084fc; 
+            border: 2px solid #8b5cf6; 
+            box-shadow: 0 0 15px rgba(139, 92, 246, 0.3);
+            margin-top: 10px;
+        }
+
+        .menu .sign-out {
+            margin-top: 60px; 
+            color: #f472b6; 
+        }
+
+        /* 🚀 MAIN PANEL WITH CYAN SMART-GRID MATRIX */
+        .main { 
+            margin-left: 340px; 
+            padding: 80px 100px; 
+            width: calc(100% - 340px); 
+            background-image: 
+                linear-gradient(rgba(0, 245, 212, 0.015) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 245, 212, 0.015) 1px, transparent 1px),
+                radial-gradient(circle at 80% 20%, rgba(0, 245, 212, 0.05) 0%, transparent 50%);
+            background-size: 30px 30px, 30px 30px, auto;
+        }
+
+        .topbar h1 { 
+            font-family: 'Orbitron', sans-serif;
+            font-size: 64px; 
+            font-weight: 900; 
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+        }
+
+        .topbar h1 span { color: #00f5d4; text-shadow: 0 0 25px rgba(0, 245, 212, 0.8); }
+
+        .topbar h3 { 
+            color: #8b5cf6; 
+            font-size: 20px; 
+            margin-top: 5px; 
+            margin-bottom: 60px; 
+            text-transform: uppercase;
+            letter-spacing: 6px;
+            font-weight: 600;
+        }
+
+        /* 💎 PREMIUM SHIELD CONTAINER WITH DUAL NEON HIGHLIGHTS */
+        .glass-container { 
+            background: rgba(18, 7, 43, 0.4); 
+            backdrop-filter: blur(12px); 
+            -webkit-backdrop-filter: blur(12px);
+            padding: 60px; 
+            border-radius: 24px; 
+            border: 1px solid rgba(0, 245, 212, 0.15);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.6);
+            position: relative;
+        }
+
+        .glass-container::before {
+            content: ""; position: absolute;
+            top: -2px; left: -2px; width: 60px; height: 60px;
+            border-top: 4px solid #00f5d4; border-left: 4px solid #00f5d4;
+            border-radius: 24px 0 0 0;
+        }
+        .glass-container::after {
+            content: ""; position: absolute;
+            bottom: -2px; right: -2px; width: 60px; height: 60px;
+            border-bottom: 4px solid #d946ef; border-right: 4px solid #d946ef;
+            border-radius: 0 0 24px 0;
+        }
+
+        .section { margin-bottom: 50px; }
+        
+        .section h2 { 
+            font-family: 'Orbitron', sans-serif;
+            font-size: 28px; /* Increased from 26px */
+            color: #ffffff; 
+            margin-bottom: 25px; 
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            letter-spacing: 1px;
+        }
+
+        .section h2 i { 
+            font-size: 18px; 
+            color: #00f5d4; 
+            background: rgba(0, 245, 212, 0.08);
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid rgba(0, 245, 212, 0.25);
+        }
+
+        /* ⚡️ Increased Paragraph Font Size and Brightness */
+        .section p { 
+            font-size: 21px; /* Increased from 18px */
+            color: #e2d3f5; /* Brightened for clear visibility */
+            line-height: 1.8; 
+            font-weight: 400;
+            max-width: 950px;
+        }
+
+        /* 📊 BIGGER AND DYNAMIC GRADIENT TECH GRID */
+        .tech-grid { 
+            display: grid; 
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 25px; 
+            margin-top: 40px; 
+        }
+
+        .tech-card { 
+            background: linear-gradient(135deg, #0d0621 0%, #06020f 100%); 
+            padding: 45px 35px; 
+            border: 1px solid rgba(139, 92, 246, 0.15);
+            border-radius: 16px;
+            transition: all 0.4s ease;
+        }
+
+        .tech-card:hover { 
+            border-color: #00f5d4;
+            transform: translateY(-8px); 
+            box-shadow: 0 15px 30px rgba(0, 245, 212, 0.15);
+            background: linear-gradient(135deg, #091a24 0%, #0d0621 100%);
+        }
+
+        /* ⚡️ Increased Card Title Size */
+        .tech-card h4 { 
+            font-family: 'Orbitron', sans-serif;
+            color: #ffffff; 
+            font-size: 22px; /* Increased from 20px */
+            margin-bottom: 20px; 
+            letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+        }
+
+        /* ⚡️ Increased Card Description Size and Visibility */
+        .tech-card p { 
+            font-size: 16px; /* Increased from 14px */
+            color: #bfaecf; /* Enhanced contrast */
+            line-height: 1.7;  
+            font-weight: 400;  
+        }
+
+        .status-dot {
+            height: 8px; width: 8px; 
+            background: #00f5d4;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 14px;
+            box-shadow: 0 0 10px #00f5d4;
+            transition: 0.3s;
+        }
+        
+        .tech-card:hover .status-dot {
+            background: #d946ef;
+            box-shadow: 0 0 12px #d946ef;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h1>EMS ADMIN</h1>
+        <div class="menu">
+            <a href="/company_info" class="active">Company Info</a>
+            <a href="/admin_dashboard">Admin List</a>
+            <a href="/admin_employees">Employee List</a>
+            <a href="/add_employee">Add Employee</a>
+            <a href="/dashboard" class="accent-link">View Predictions</a>
+            <a href="/logout" class="sign-out">Sign Out</a>
+        </div>
+    </div>
+    
+    <div class="main">
+        <div class="topbar">
+            <h1>Xenon <span>IT Solutions</span></h1>
+            <h3>Company Profile & Core Work</h3>
+        </div>
+        
+        <div class="glass-container">
+            <div class="section">
+                <h2><i class="fa-solid fa-terminal"></i> What We Do</h2>
+                <p>Xenon IT Solutions is a modern technology company that builds smart software and secure database systems. We create advanced dashboard systems that help business managers see employee performance and track database records in real time.</p>
+            </div>
+            
+            <div class="section">
+                <h2><i class="fa-solid fa-shield-halved"></i> Our Mission</h2>
+                <p>Our main goal is to make office work simple and clear using smart data tools. We help companies protect their system data, keep team members happy, and make better management decisions every day.</p>
+            </div>
+            
+            <div class="section">
+                <h2><i class="fa-solid fa-layer-group"></i> Our Tech Services</h2>
+                <div class="tech-grid">
+                    <div class="tech-card">
+                        <h4><span class="status-dot"></span>Smart Learning</h4>
+                        <p>Using smart code models to help check system data and find risk levels quickly.</p>
+                    </div>
+                    <div class="tech-card">
+                        <h4><span class="status-dot"></span>Data Security</h4>
+                        <p>Using safe system login steps to protect private admin and employee files perfectly.</p>
+                    </div>
+                    <div class="tech-card">
+                        <h4><span class="status-dot"></span>Database Setup</h4>
+                        <p>Building clean Python and SQLite code setups that can handle corporate data smoothly.</p>
+                    </div>
+                    <div class="tech-card">
+                        <h4><span class="status-dot"></span>System Support</h4>
+                        <p>Based in Dhaka, Bangladesh. We make sure our software apps run fast without any downtime errors.</p>
+                    </div>
+                    <div class="tech-card">
+                        <h4><span class="status-dot"></span>History Logs</h4>
+                        <p>Keeping clear history logs for all admin changes so the system stays fully organized.</p>
+                    </div>
+                    <div class="tech-card" style="border-style: dashed; border-color: rgba(0, 245, 212, 0.3); background: transparent;">
+                        <h4><span class="status-dot"></span>Cloud Gateway</h4>
+                        <p>Running secure centralized architecture maps with easy account controls for all active enterprise nodes.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

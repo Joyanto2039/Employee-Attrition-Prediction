@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Directory</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { background: #07020d; display: flex; color: white; min-height: 100vh; }
+        
+        /* SIDEBAR LAYOUT */
+        .sidebar { width: 340px; background: #12072b; padding: 35px 25px; position: fixed; height: 100vh; border-right: 3px solid #8b5cf6; }
+        .sidebar h1 { font-size: 32px; font-weight: 800; color: #d946ef; margin-bottom: 40px; text-shadow: 0 0 8px #d946ef; white-space: nowrap; }
+        
+        .menu a { 
+            display: block; 
+            padding: 14px 16px; 
+            margin-bottom: 10px; 
+            border-radius: 12px; 
+            text-decoration: none; 
+            color: #c084fc; 
+            font-weight: 800; 
+            font-size: 22px; 
+            transition: 0.3s; 
+            border: 2px solid transparent; 
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .menu a:hover, .menu a.active { background: #07020d; color: #f472b6; border-color: #d946ef; box-shadow: 0 0 15px rgba(217, 70, 239, 0.4); }
+        .menu .accent-link { background: rgba(139, 92, 246, 0.2); border: 2px solid #8b5cf6; }
+        
+        .main { margin-left: 340px; padding: 60px 80px; width: calc(100% - 340px); }
+        
+        /* MAIN BODY ELEMENTS */
+        .topbar h1 { font-size: 56px; font-weight: 800; color: white; }
+        .topbar h3 { color: #c084fc; font-size: 26px; margin-top: 12px; margin-bottom: 60px; }
+        
+        .employee-table { background: #12072b; padding: 55px; border-radius: 32px; border: 2px solid #8b5cf6; }
+        .employee-table h2 { font-size: 36px; font-weight: 700; color: #d946ef; margin-bottom: 45px; }
+        
+        table { width: 100%; border-collapse: collapse; }
+        th { background: #07020d; padding: 28px 24px; text-align: left; font-size: 22px; font-weight: 700; color: #f472b6; border-bottom: 3px solid #d946ef; white-space: nowrap; }
+        td { padding: 32px 24px; font-size: 20px; border-bottom: 2px solid #2e1065; color: #e9d5ff; transition: 0.2s; white-space: nowrap; }
+        
+        .profile { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 2px solid #d946ef; }
+        
+        /* ACTIONS CELL FORCE ONE LINE */
+        .actions-cell {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            white-space: nowrap;
+            width: 100%;
+        }
+
+        /* BUTTONS STYLING */
+        .action-btn { 
+            padding: 16px 28px; 
+            border-radius: 16px; 
+            border: none; 
+            color: white; 
+            cursor: pointer; 
+            text-decoration: none; 
+            font-size: 18px; 
+            font-weight: 700; 
+            display: inline-block; 
+            transition: 0.3s; 
+            white-space: nowrap;
+        }
+        .edit { background: rgba(139, 92, 246, 0.3); color: #c084fc; border: 2px solid #8b5cf6; }
+        .edit:hover { background: #8b5cf6; color: white; }
+        .delete { background: rgba(244, 114, 182, 0.2); color: #f472b6; border: 2px solid #f472b6; }
+        .delete:hover { background: #d946ef; color: white; }
+
+        /* ========================================================
+           ✨ HOVER EFFECT: NEON GREEN "PREDICT ATTRITION" BUTTON
+        ======================================================== */
+        .btn-predict-green { 
+            background: #22c55e; 
+            color: #07020d; 
+            text-decoration: none; 
+            padding: 16px 28px; 
+            border-radius: 16px; 
+            font-size: 18px; 
+            font-weight: 800; 
+            box-shadow: 0 0 15px #22c55e; 
+            opacity: 0;
+            visibility: hidden;
+            transform: translateX(-15px);
+            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+            display: inline-block;
+            white-space: nowrap;
+            
+            /* 📐 This margin forces the green button to slide over to the absolute far right end of the cell width */
+            margin-left: auto; 
+        }
+        
+        .btn-predict-green:hover { 
+            box-shadow: 0 0 25px #22c55e; 
+        }
+
+        /* Show the green button smoothly when you hover over the row */
+        tr:hover .btn-predict-green {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(0);
+        }
+        
+        tr:hover td {
+            background: rgba(255, 255, 255, 0.02);
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h1>EMS ADMIN</h1>
+        <div class="menu">
+            <a href="/company_info">Company Info</a>
+            <a href="/admin_dashboard">Admin List</a>
+            <a href="/admin_employees" class="active">Employee List</a>
+            <a href="/add_employee">Add Employee</a>
+            <a href="/dashboard" class="accent-link">View Predictions</a>
+            <a href="/logout" style="margin-top: 50px; color: #f472b6;">Sign Out</a>
+        </div>
+    </div>
+    <div class="main">
+        <div class="topbar">
+            <h1>Employee List</h1>
+    <h3>All Registered Staff</h3>
+        </div>
+        <div class="employee-table">
+            <h2>Active Employee Profiles</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Avatar</th>
+                        <th>User ID</th>
+                        <th>Full Name</th>
+                        <th>Email Address</th>
+                        <th>Department</th>
+                        <th>Salary</th>
+                        <th style="width: 35%;">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for emp in employees %}
+                    <tr>
+                        <td><img class="profile" src="{{ url_for('static', filename='uploads/' + emp[8]) }}" onerror="this.src='https://via.placeholder.com/80'"></td>
+                        <td><code style="font-size: 18px;">{{ emp[1] }}</code></td>
+                        <td style="font-weight: 700; color: white;">{{ emp[2] }}</td>
+                        <td>{{ emp[3] }}</td>
+                        <td>{{ emp[6] }}</td>
+                        <td style="font-weight: 700; color: #22c55e;">${{ emp[9] if emp[9] else '0' }}</td>
+                        <td>
+                            <div class="actions-cell">
+                                <a href="/edit_profile/{{ emp[0] }}" class="action-btn edit">Modify</a>
+                                <a href="/delete_employee/{{ emp[0] }}" onclick="return confirm('Delete this employee profile?');" class="action-btn delete">Delete</a>
+                                
+                                <a href="/predict_form" class="btn-predict-green">Predict Attrition</a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
