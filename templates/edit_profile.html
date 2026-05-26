@@ -8,7 +8,6 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
         
-        /* ⚡ STRIPS OUT CONSTRAINTS TO OCCUPY 100% VIEWPORT WIDTH AND HEIGHT */
         body { 
             background: #0c0a05; 
             min-height: 100vh; 
@@ -18,7 +17,6 @@
             overflow-x: hidden;
         }
         
-        /* ⚡ FULL SCREEN GRID WRAPPER MATRIX split side-by-side */
         .workspace-wrapper { 
             display: flex; 
             width: 100%; 
@@ -26,7 +24,6 @@
             background: #17140b; 
         }
 
-        /* 🎨 LEFT COLUMN: AMBER & GOLD BRAND PANEL (STRETCHED HEIGHT) */
         .info-panel { 
             width: 25%; 
             background: linear-gradient(145deg, #2b1f0d, #0b0803); 
@@ -39,46 +36,45 @@
             height: 100vh;
         }
         .info-panel-header h2 { 
-    font-size: 52px;           /* 44px থেকে বাড়িয়ে 52px করা হয়েছে */
-    font-weight: 800; 
-    color: #f59e0b; 
-    line-height: 1.15; 
-    text-shadow: 0 0 20px rgba(245, 158, 11, 0.5); /* গ্লো ইফেক্ট একটু বাড়ানো হয়েছে */
-}
+            font-size: 52px; 
+            font-weight: 800; 
+            color: #f59e0b; 
+            line-height: 1.15; 
+            text-shadow: 0 0 20px rgba(245, 158, 11, 0.5); 
+        }
 
-.info-panel-header p { 
-    font-size: 22px;           /* 20px থেকে বাড়িয়ে 22px করা হয়েছে */
-    color: #fef3c7; 
-    margin-top: 22px; 
-    font-weight: 600; 
-    line-height: 1.4;
-}
+        .info-panel-header p { 
+            font-size: 22px; 
+            color: #fef3c7; 
+            margin-top: 22px; 
+            font-weight: 600; 
+            line-height: 1.4;
+        }
 
-.brand-hint { 
-    background: rgba(217, 70, 239, 0.1); 
-    border-left: 5px solid #d946ef; /* বামের বর্ডারটি সামান্য মোটা করা হয়েছে */
-    padding: 30px;             /* 25px থেকে বাড়িয়ে 30px করা হয়েছে */
-    border-radius: 0 18px 18px 0; 
-    margin-top: 55px;          /* 50px থেকে বাড়িয়ে 55px করা হয়েছে */
-}
+        .brand-hint { 
+            background: rgba(217, 70, 239, 0.1); 
+            border-left: 5px solid #d946ef; 
+            padding: 30px; 
+            border-radius: 0 18px 18px 0; 
+            margin-top: 55px; 
+        }
 
-.brand-hint h4 { 
-    color: #d946ef; 
-    font-size: 24px;           /* 20px থেকে বাড়িয়ে 24px করা হয়েছে */
-    font-weight: 700; 
-    margin-bottom: 10px; 
-}
+        .brand-hint h4 { 
+            color: #d946ef; 
+            font-size: 24px; 
+            font-weight: 700; 
+            margin-bottom: 10px; 
+        }
 
-.brand-hint p { 
-    color: #f5f5f5; 
-    font-size: 18px;           /* 16px থেকে বাড়িয়ে 18px করা হয়েছে */
-    line-height: 1.55; 
-}
+        .brand-hint p { 
+            color: #f5f5f5; 
+            font-size: 18px; 
+            line-height: 1.55; 
+        }
 
-        /* 📐 RIGHT COLUMN: OCCUPIES REMAINING 100% SCREEN WIDTH WITH AMPLE BREATHING ROOM */
         .grid-panel { 
             width: 75%; 
-            margin-left: 25%; /* Offsets the fixed side panel perfectly */
+            margin-left: 25%; 
             padding: 80px 100px; 
             display: flex;
             flex-direction: column;
@@ -112,12 +108,10 @@
         }
         .matrix-field input:focus, .matrix-field select:focus { border-color: #f59e0b; box-shadow: 0 0 20px rgba(245, 158, 11, 0.4); }
         
-        /* Dashed upload panel */
         .file-upload-box { background: #0c0a05; border: 2px dashed #d97706; border-radius: 16px; padding: 18px 24px; display: flex; align-items: center; cursor: pointer; transition: 0.3s; }
         .file-upload-box:hover { border-color: #f59e0b; background: rgba(245, 158, 11, 0.02); }
         .file-upload-box input[type="file"] { border: none; background: transparent; padding: 0; margin: 0; cursor: pointer; font-size: 18px; }
 
-        /* ⚡️ MASSIVE FULL WIDTH DISPATCH DEPLOY BUTTON */
         .submit-container { margin-top: 60px; display: flex; align-items: center; width: 100%; }
         
         button { 

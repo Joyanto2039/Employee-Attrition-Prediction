@@ -5,14 +5,10 @@ import os
 app = Flask(__name__)
 app.secret_key = "mysecretkey123"
 
-# =========================
-# DATABASE INIT
-# =========================
 def init_db():
     conn = sqlite3.connect("employees.db")
     cursor = conn.cursor()
 
-    # ব্যবহারকারী টেবিল তৈরি (যদি না থাকে)
     cursor.execute("""
     CREATE TABLE IF NOT EXISTS users(
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -28,7 +24,6 @@ def init_db():
     )
     """)
 
-    # প্রেডিকশন টেবিল তৈরি (সরাসরি সব প্রয়োজনীয় কলামসহ)
     cursor.execute("""
     CREATE TABLE IF NOT EXISTS predictions(
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -40,7 +35,6 @@ def init_db():
     )
     """)
 
-    # ডিফল্ট এন্টারপ্রাইজ অ্যাডমিন অ্যাকাউন্ট তৈরি (যদি না থাকে)
     cursor.execute("SELECT * FROM users WHERE role=?", ("admin",))
     if not cursor.fetchone():
         cursor.execute("""
@@ -53,9 +47,6 @@ def init_db():
 
 init_db()
 
-# =========================
-# LOGIN ACTIONS
-# =========================
 @app.route('/')
 def login_page():
     return render_template('login.html')
@@ -88,9 +79,6 @@ def login():
     else:
         return redirect(url_for('employee_dashboard'))
 
-# =========================
-# ADMIN CONSOLE PAGES
-# =========================
 @app.route('/admin_dashboard')
 def admin_dashboard():
     if session.get('role') != "admin":
@@ -105,7 +93,6 @@ def admin_dashboard():
     cursor.execute("SELECT COUNT(*) FROM users WHERE role='employee'")
     total_employees = cursor.fetchone()[0]
     
-    # শুধু 'High' স্ট্যাটাস কাউন্ট করার লজিক (কোড অপ্টিমাইজেশন)
     cursor.execute("SELECT COUNT(*) FROM predictions WHERE risk_status='High'")
     high_risk = cursor.fetchone()[0]
     
@@ -179,9 +166,6 @@ def delete_employee(user_id):
     conn.close()
     return redirect(url_for('admin_dashboard') if role_str == 'admin' else url_for('admin_employees'))
 
-# =========================
-# WORKER CONSOLE PAGES
-# =========================
 @app.route('/employee_dashboard')
 def employee_dashboard():
     if not session.get('user_id'):
@@ -231,9 +215,6 @@ def edit_profile(user_id):
     conn.close()
     return render_template("edit_profile.html", user=user)
 
-# =========================
-# DATA PREDICTION MODEL SESSIONS
-# =========================
 @app.route('/predict_form')
 def predict_form():
     if not session.get('user_id'):
@@ -262,7 +243,6 @@ def predict():
     leave_prob = round(min(95.0, max(5.0, base_leave)), 2)
     stay_prob = round(100.0 - leave_prob, 2)
     
-    # ৩-স্তরের রিস্ক ম্যাট্রিক্স কন্ডিশন
     if leave_prob > 70.0:
         prediction_text = "Leave"
         risk_status = "High"
@@ -292,12 +272,10 @@ def dashboard():
     conn = sqlite3.connect("employees.db")
     cursor = conn.cursor()
     
-    # টেবিল ডাটা আইডি অনুযায়ী ক্রমানুসারে (ASC) সাজানো থাকবে
     cursor.execute("SELECT id, prediction, stay_prob, leave_prob, risk_status, employee_id FROM predictions ORDER BY id ASC")
     data = cursor.fetchall()
     
     if data:
-        # ওপরের মেইন ব্যানারের জন্য আলাদা কুয়েরি দিয়ে লেটেস্ট এন্ট্রি ট্র্যাক করা হয়েছে
         cursor.execute("SELECT prediction, stay_prob, leave_prob, risk_status, employee_id FROM predictions ORDER BY id DESC LIMIT 1")
         lr = cursor.fetchone()
         last = {"prediction": lr[0], "stay_prob": lr[1], "leave_prob": lr[2], "risk_status": lr[3], "employee_id": lr[4]}
@@ -329,15 +307,11 @@ def logout():
     session.clear()
     return redirect(url_for('login_page'))
 
-# =========================
-# COMPANY INFO ROUTE
-# =========================
 @app.route('/company_info')
 def company_info():
     if not session.get('user_id'):
         return redirect(url_for('login_page'))
     return render_template("company.html")
 
-# সার্ভার রান করার মূল মেইন ব্লক (ক্লিন ও সিঙ্গেল স্টেটমেন্ট)
 if __name__ == "__main__":
     app.run(debug=True)

@@ -8,7 +8,6 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
         
-        /* ⚡️ STRIPS OUT CONSTRAINTS TO OCCUPY 100% VIEWPORT WIDTH AND HEIGHT */
         body { 
             background: #07020d; 
             min-height: 100vh; 
@@ -18,7 +17,6 @@
             overflow-x: hidden;
         }
         
-        /* ⚡️ FULL SCREEN GRID WRAPPER MATRIX split side-by-side */
         .workspace-wrapper { 
             display: flex; 
             width: 100%; 
@@ -26,9 +24,8 @@
             background: #12072b; 
         }
 
-        /* 🎨 LEFT COLUMN: ACCENT BRAND PANEL (STRETCHED HEIGHT) */
         .info-panel { 
-            width: 25%; /* Slightly narrower ratio to give more row room for inputs */
+            width: 25%; 
             background: linear-gradient(145deg, #1e0b4a, #0c041e); 
             padding: 80px 50px; 
             display: flex; 
@@ -39,46 +36,45 @@
             height: 100vh;
         }
        .info-panel-header h2 { 
-    font-size: 56px;           /* ৪৬px থেকে বাড়িয়ে ৫৬px করা হয়েছে */
-    font-weight: 800; 
-    color: #d946ef; 
-    line-height: 1.15; 
-    text-shadow: 0 0 20px rgba(217, 70, 239, 0.5); /* গ্লো ইফেক্ট বাড়ানো হয়েছে */
-}
+            font-size: 56px; 
+            font-weight: 800; 
+            color: #d946ef; 
+            line-height: 1.15; 
+            text-shadow: 0 0 20px rgba(217, 70, 239, 0.5); 
+        }
 
-.info-panel-header p { 
-    font-size: 24px;           /* ২০px থেকে বাড়িয়ে ২৪px করা হয়েছে */
-    color: #c084fc; 
-    margin-top: 24px; 
-    font-weight: 600; 
-    line-height: 1.4;
-}
+        .info-panel-header p { 
+            font-size: 24px; 
+            color: #c084fc; 
+            margin-top: 24px; 
+            font-weight: 600; 
+            line-height: 1.4;
+        }
 
-.brand-hint { 
-    background: rgba(34, 197, 94, 0.1); 
-    border-left: 6px solid #22c55e; /* বর্ডার একটু মোটা করা হয়েছে */
-    padding: 32px;             /* ২৫px থেকে বাড়িয়ে ৩২px করা হয়েছে */
-    border-radius: 0 20px 20px 0; 
-    margin-top: 60px;          /* ৫০px থেকে বাড়িয়ে ৬০px করা হয়েছে */
-}
+        .brand-hint { 
+            background: rgba(34, 197, 94, 0.1); 
+            border-left: 6px solid #22c55e; 
+            padding: 32px; 
+            border-radius: 0 20px 20px 0; 
+            margin-top: 60px; 
+        }
 
-.brand-hint h4 { 
-    color: #22c55e; 
-    font-size: 26px;           /* ২০px থেকে বাড়িয়ে ২৬px করা হয়েছে */
-    font-weight: 700; 
-    margin-bottom: 12px; 
-}
+        .brand-hint h4 { 
+            color: #22c55e; 
+            font-size: 26px; 
+            font-weight: 700; 
+            margin-bottom: 12px; 
+        }
 
-.brand-hint p { 
-    color: #e9d5ff; 
-    font-size: 20px;           /* ১৬px থেকে বাড়িয়ে ২০px করা হয়েছে */
-    line-height: 1.6; 
-}
+        .brand-hint p { 
+            color: #e9d5ff; 
+            font-size: 20px; 
+            line-height: 1.6; 
+        }
 
-        /* 📐 RIGHT COLUMN: OCCUPIES REMAINING 100% SCREEN WIDTH WITH AMPLE BREATHING ROOM */
         .grid-panel { 
             width: 75%; 
-            margin-left: 25%; /* Offsets the fixed side panel perfectly */
+            margin-left: 25%; 
             padding: 80px 100px; 
             display: flex;
             flex-direction: column;
@@ -112,12 +108,10 @@
         }
         .matrix-field input:focus, .matrix-field select:focus { border-color: #22c55e; box-shadow: 0 0 20px rgba(34, 197, 94, 0.4); }
         
-        /* Dashed upload panel */
         .file-upload-box { background: #07020d; border: 2px dashed #8b5cf6; border-radius: 16px; padding: 18px 24px; display: flex; align-items: center; cursor: pointer; transition: 0.3s; }
         .file-upload-box:hover { border-color: #d946ef; background: rgba(217, 70, 239, 0.02); }
         .file-upload-box input[type="file"] { border: none; background: transparent; padding: 0; margin: 0; cursor: pointer; font-size: 18px; }
 
-        /* ⚡️ MASSIVE FULL WIDTH DISPATCH DEPLOY BUTTON */
         .submit-container { margin-top: 60px; display: flex; align-items: center; width: 100%; }
         
         button { 
@@ -150,16 +144,16 @@
 
     <div class="workspace-wrapper">
         
-       <div class="info-panel">
-    <div class="info-panel-header">
-        <h2>Add New User</h2>
-        <p>Register new profiles instantly into the system database.</p>
-        
-        <div class="brand-hint">
-            <h4>Important Check</h4>
-            <p>Double-check email addresses and roles before creating the account.</p>
-        </div>
-    </div>
+        <div class="info-panel">
+            <div class="info-panel-header">
+                <h2>Add New User</h2>
+                <p>Register new profiles instantly into the system database.</p>
+                
+                <div class="brand-hint">
+                    <h4>Important Check</h4>
+                    <p>Double-check email addresses and roles before creating the account.</p>
+                </div>
+            </div>
             
             <a href="/admin_dashboard" class="back-link">← Cancel and Exit View</a>
         </div>

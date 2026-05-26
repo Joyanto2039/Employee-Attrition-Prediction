@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Employee Attrition Prediction Dashboard</title>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -22,9 +23,6 @@
             overflow-x: hidden;
         }
 
-        /* =========================
-           DELETE BUTTON
-        ========================= */
         .delete-cell {
             position: relative;
         }
@@ -48,9 +46,6 @@
             transform: translateY(0);
         }
 
-        /* =========================
-           EXIT SYSTEM BUTTON
-        ========================= */
         .top-bar {
             position: fixed;
             top: 25px;
@@ -82,9 +77,6 @@
             transform: scale(1.08);
         }
 
-        /* =========================
-           DASHBOARD HEADER
-        ========================= */
         .header {
             width: 100%;
             padding: 60px 20px 40px;
@@ -114,9 +106,6 @@
             }
         }
 
-        /* =========================
-           RESULT CARD
-        ========================= */
         .result {
             margin: 0 auto 45px;
             width: fit-content;
@@ -134,7 +123,6 @@
             text-shadow: 0 0 4px rgba(255,255,255,0.08);
         }
 
-        /* EMPLOYEE WILL STAY */
         .result.stay {
             color: #00ff66;
             border-color: #00ff66;
@@ -143,7 +131,6 @@
             box-shadow: 0 0 10px rgba(0,255,102,0.22), inset 0 0 12px rgba(0,255,102,0.06);
         }
 
-        /* EMPLOYEE MAY LEAVE */
         .result.leave {
             color: #ffcc00;
             border-color: #ffcc00;
@@ -152,7 +139,6 @@
             box-shadow: 0 0 10px rgba(255,204,0,0.15), inset 0 0 10px rgba(255,204,0,0.05);
         }
 
-        /* HIGH RISK */
         .result.highrisk {
             color: #ff4d4d;
             border-color: #ff4d4d;
@@ -161,9 +147,6 @@
             box-shadow: 0 0 10px rgba(255,77,77,0.18), inset 0 0 10px rgba(255,77,77,0.05);
         }
 
-        /* =========================
-           KPI CARDS
-        ========================= */
         .kpi {
             display: flex;
             justify-content: center;
@@ -200,9 +183,6 @@
             color: #00ff88;
         }
 
-        /* =========================
-           MAIN LAYOUT
-        ========================= */
         .main {
             display: grid;
             grid-template-columns: 1.6fr 1fr;
@@ -220,9 +200,6 @@
             box-shadow: 0 25px 50px rgba(0,0,0,0.5);
         }
 
-        /* =========================
-           TABLE STYLING
-        ========================= */
         table {
             width: 100%;
             border-collapse: separate;
@@ -260,9 +237,6 @@
             border-radius: 0 15px 15px 0;
         }
 
-        /* =========================
-           CHART
-        ========================= */
         .chart-container {
             position: relative;
             height: 420px;
@@ -364,7 +338,7 @@
                             font-weight: 700;
                             border: 1px solid;
                             {% if 'Low' in row[4] %}
-                                background: rgba(0, 255, 136, 0.18);
+                                background: rgba(0, 25, 136, 0.18);
                                 color: #00ff88;
                                 border-color: rgba(0, 255, 136, 0.7);
                                 box-shadow: 0 0 10px rgba(0, 255, 136, 0.35);
@@ -404,11 +378,9 @@
 </div>
 
 <script>
-// ✨ DYNAMIC COLOR MATRIX SCRIPT FOR THE USER ID COLUMN
 document.addEventListener("DOMContentLoaded", function() {
     const userElements = document.querySelectorAll(".random-userid-color");
     userElements.forEach(element => {
-        // Generates bright neon-spectrum HSL values to ensure crisp visibility on dark theme backgrounds
         const randomHue = Math.floor(Math.random() * 360);
         element.style.color = `hsl(${randomHue}, 100%, 65%)`;
     });
