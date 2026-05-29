@@ -1,6 +1,8 @@
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, render_template, request, redirect, url_for, session, Response
 import sqlite3
 import os
+import csv
+import io
 
 app = Flask(__name__)
 app.secret_key = "mysecretkey123"
@@ -312,6 +314,38 @@ def company_info():
     if not session.get('user_id'):
         return redirect(url_for('login_page'))
     return render_template("company.html")
+
+@app.route('/export_csv')
+def export_csv():
+    if not session.get('user_id'):
+        return redirect(url_for('login_page'))
+        
+    conn = sqlite3.connect("employees.db")
+    cursor = conn.cursor()
+    cursor.execute("SELECT id, employee_id, prediction, stay_prob, leave_prob, risk_status FROM predictions ORDER BY id ASC")
+    rows = cursor.fetchall()
+    conn.close()
+
+    output = io.StringIO()
+    writer = csv.writer(output)
+    writer.writerow(['Identifier', 'Employee ID', 'Prediction', 'Stay %', 'Leave %', 'Risk Status'])
+    
+    for index, row in enumerate(rows, start=1):
+        writer.writerow([
+            f"#{index}",
+            row[1] if row[1] else 'N/A', 
+            row[2], 
+            f"{row[3]}%", 
+            f"{row[4]}%", 
+            row[5]
+        ])
+        
+    output.seek(0)
+    return Response(
+        output.getvalue(),
+        mimetype="text/csv",
+        headers={"Content-disposition": "attachment; filename=attrition_report.csv"}
+    )
 
 if __name__ == "__main__":
     app.run(debug=True)

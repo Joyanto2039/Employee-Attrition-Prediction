@@ -102,6 +102,45 @@
         tr:hover td {
             background: rgba(255, 255, 255, 0.02);
         }
+
+        /* 🔍 FEATURE 2: SEARCH & FILTER CSS MODIFIERS */
+        .filter-panel {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 35px;
+            width: 100%;
+        }
+        .search-input {
+            flex: 2;
+            padding: 16px 24px;
+            background: #07020d;
+            border: 2px solid #8b5cf6;
+            border-radius: 16px;
+            color: white;
+            font-size: 18px;
+            outline: none;
+            transition: 0.3s;
+        }
+        .search-input:focus {
+            border-color: #d946ef;
+            box-shadow: 0 0 15px rgba(217, 70, 239, 0.3);
+        }
+        .filter-select {
+            flex: 1;
+            padding: 16px 24px;
+            background: #07020d;
+            border: 2px solid #8b5cf6;
+            border-radius: 16px;
+            color: #c084fc;
+            font-size: 18px;
+            font-weight: 600;
+            outline: none;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .filter-select:focus {
+            border-color: #d946ef;
+        }
     </style>
 </head>
 <body>
@@ -123,7 +162,19 @@
         </div>
         <div class="employee-table">
             <h2>Active Employee Profiles</h2>
-            <table>
+
+            <div class="filter-panel">
+                <input type="text" id="employeeSearch" onkeyup="filterEmployees()" class="search-input" placeholder="Search by Name or User ID...">
+                <select id="deptFilter" onchange="filterEmployees()" class="filter-select">
+                    <option value="all">All Departments</option>
+                    <option value="Management">Management</option>
+                    <option value="Engineering">Engineering</option>
+                    <option value="HR">HR</option>
+                    <option value="Sales">Sales</option>
+                </select>
+            </div>
+
+            <table id="employeeTable">
                 <thead>
                     <tr>
                         <th>Avatar</th>
@@ -158,5 +209,35 @@
             </table>
         </div>
     </div>
+
+    <script>
+    function filterEmployees() {
+        let input = document.getElementById("employeeSearch").value.toUpperCase();
+        let deptSelect = document.getElementById("deptFilter").value.toUpperCase();
+        let table = document.getElementById("employeeTable");
+        let tr = table.getElementsByTagName("tr");
+
+        for (let i = 1; i < tr.length; i++) {
+            let tdID = tr[i].getElementsByTagName("td")[1];   // Column 2: User ID
+            let tdName = tr[i].getElementsByTagName("td")[2]; // Column 3: Full Name
+            let tdDept = tr[i].getElementsByTagName("td")[4]; // Column 5: Department
+
+            if (tdName || tdID || tdDept) {
+                let idText = tdID.textContent || tdID.innerText;
+                let nameText = tdName.textContent || tdName.innerText;
+                let deptText = tdDept.textContent || tdDept.innerText;
+
+                let matchesSearch = (idText.toUpperCase().indexOf(input) > -1) || (nameText.toUpperCase().indexOf(input) > -1);
+                let matchesDept = (deptSelect === "ALL") || (deptText.toUpperCase().indexOf(deptSelect) > -1);
+
+                if (matchesSearch && matchesDept) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+    </script>
 </body>
 </html>
