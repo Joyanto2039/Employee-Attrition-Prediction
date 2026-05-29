@@ -1,0 +1,22 @@
+{
+  "name": "Xenon Attrition Core",
+  "short_name": "XenonAC",
+  "description": "EMS Admin & Employee Attrition Prediction Dashboard",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#04010a",
+  "theme_color": "#0d0621",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/1160/1160358.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/1160/1160358.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ]
+}
