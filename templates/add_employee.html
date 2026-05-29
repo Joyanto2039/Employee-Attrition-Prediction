@@ -7,71 +7,195 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-        body { background: #07020d; min-height: 100vh; width: 100vw; display: flex; color: white; overflow-x: hidden; }
-        .workspace-wrapper { display: flex; width: 100%; min-height: 100vh; background: #12072b; flex-direction: row; }
-        .info-panel { width: 260px; background: linear-gradient(145deg, #1e0b4a, #0c041e); padding: 40px 25px; display: flex; flex-direction: column; justify-content: space-between; border-right: 3px solid #8b5cf6; position: fixed; height: 100vh; z-index: 10; }
-        .info-panel-header h2 { font-size: clamp(24px, 3vw, 36px); font-weight: 800; color: #d946ef; line-height: 1.15; text-shadow: 0 0 20px rgba(217, 70, 239, 0.5); }
-        .info-panel-header p { font-size: 14px; color: #c084fc; margin-top: 12px; font-weight: 600; line-height: 1.4; }
-        .brand-hint { background: rgba(34, 197, 94, 0.1); border-left: 4px solid #22c55e; padding: 18px; border-radius: 0 14px 14px 0; margin-top: 25px; }
-        .brand-hint h4 { color: #22c55e; font-size: 16px; font-weight: 700; margin-bottom: 6px; }
-        .brand-hint p { color: #e9d5ff; font-size: 13px; line-height: 1.5; }
-        .grid-panel { width: calc(100% - 260px); margin-left: 260px; padding: 40px 35px; display: flex; flex-direction: column; justify-content: center; transition: 0.3s; }
+        
+        body { 
+            background: #07020d; 
+            min-height: 100vh; 
+            width: 100vw;
+            display: flex; 
+            color: white; 
+            overflow-x: hidden;
+        }
+        
+        .workspace-wrapper { 
+            display: flex; 
+            width: 100%; 
+            min-height: 100vh;
+            background: #12072b; 
+            flex-direction: row;
+        }
+
+        .info-panel { 
+            width: 280px; 
+            background: linear-gradient(145deg, #1e0b4a, #0c041e); 
+            padding: 40px 25px; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: space-between; 
+            border-right: 3px solid #8b5cf6; 
+            position: fixed;
+            height: 100vh;
+            z-index: 10;
+        }
+       .info-panel-header h2 { 
+            font-size: clamp(28px, 3vw, 44px); 
+            font-weight: 800; 
+            color: #d946ef; 
+            line-height: 1.15; 
+            text-shadow: 0 0 20px rgba(217, 70, 239, 0.5); 
+        }
+
+        .info-panel-header p { 
+            font-size: 16px; 
+            color: #c084fc; 
+            margin-top: 15px; 
+            font-weight: 600; 
+            line-height: 1.4;
+        }
+
+        .brand-hint { 
+            background: rgba(34, 197, 94, 0.1); 
+            border-left: 4px solid #22c55e; 
+            padding: 20px; 
+            border-radius: 0 14px 14px 0; 
+            margin-top: 30px; 
+        }
+
+        .brand-hint h4 { 
+            color: #22c55e; 
+            font-size: 18px; 
+            font-weight: 700; 
+            margin-bottom: 8px; 
+        }
+
+        .brand-hint p { 
+            color: #e9d5ff; 
+            font-size: 14px; 
+            line-height: 1.5; 
+        }
+
+        .grid-panel { 
+            width: calc(100% - 280px); 
+            margin-left: 280px; 
+            padding: 50px 40px; 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            transition: 0.3s;
+        }
+        
         form { width: 100%; }
-        .input-matrix { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; width: 100%; }
+
+        .input-matrix { 
+            display: grid; 
+            grid-template-columns: repeat(2, 1fr); 
+            gap: 25px; 
+            width: 100%;
+        }
+        
         .full-width-field { grid-column: span 2; }
+
         .matrix-field { display: flex; flex-direction: column; }
-        .matrix-field label { font-size: 12px; font-weight: 700; color: #f472b6; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; }
-        .matrix-field input, .matrix-field select { width: 100%; padding: 12px 16px; border-radius: 10px; border: 2px solid #8b5cf6; background: #07020d; color: white; font-size: 15px; outline: none; transition: 0.3s; }
+        .matrix-field label { font-size: 13px; font-weight: 700; color: #f472b6; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; }
+        
+        .matrix-field input, .matrix-field select { 
+            width: 100%; 
+            padding: 14px 18px; 
+            border-radius: 12px; 
+            border: 2px solid #8b5cf6; 
+            background: #07020d; 
+            color: white; 
+            font-size: 16px; 
+            outline: none; 
+            transition: 0.3s; 
+        }
         .matrix-field input:focus, .matrix-field select:focus { border-color: #22c55e; box-shadow: 0 0 20px rgba(34, 197, 94, 0.4); }
-        .file-upload-box { background: #07020d; border: 2px dashed #8b5cf6; border-radius: 10px; padding: 12px 16px; display: flex; align-items: center; cursor: pointer; transition: 0.3s; }
+        
+        .file-upload-box { background: #07020d; border: 2px dashed #8b5cf6; border-radius: 12px; padding: 14px 18px; display: flex; align-items: center; cursor: pointer; transition: 0.3s; }
         .file-upload-box:hover { border-color: #d946ef; background: rgba(217, 70, 239, 0.02); }
-        .file-upload-box input[type="file"] { border: none; background: transparent; padding: 0; margin: 0; cursor: pointer; font-size: 15px; width: 100%; }
-        .submit-container { margin-top: 30px; display: flex; align-items: center; width: 100%; }
-        button { width: 100%; padding: 14px; background: linear-gradient(135deg, #22c55e, #8b5cf6); color: #07020d; border: none; border-radius: 12px; font-size: 16px; font-weight: 800; cursor: pointer; transition: 0.3s; box-shadow: 0 8px 25px rgba(34, 197, 94, 0.3); }
+        .file-upload-box input[type="file"] { border: none; background: transparent; padding: 0; margin: 0; cursor: pointer; font-size: 16px; width: 100%; }
+
+        .submit-container { margin-top: 40px; display: flex; align-items: center; width: 100%; }
+        
+        button { 
+            width: 100%;
+            padding: 16px; 
+            background: linear-gradient(135deg, #22c55e, #8b5cf6); 
+            color: #07020d; 
+            border: none; 
+            border-radius: 14px; 
+            font-size: 18px; 
+            font-weight: 800; 
+            cursor: pointer; 
+            transition: 0.3s; 
+            box-shadow: 0 8px 25px rgba(34, 197, 94, 0.3); 
+        }
         button:hover { transform: translateY(-3px); color: white; box-shadow: 0 0 40px #22c55e; }
-        .back-link { color: #c084fc; text-decoration: none; font-size: 15px; font-weight: 700; white-space: nowrap; transition: 0.2s; margin-top: 15px; display: inline-block; }
+        
+        .back-link { 
+            color: #c084fc; 
+            text-decoration: none; 
+            font-size: 16px; 
+            font-weight: 700; 
+            white-space: nowrap;
+            transition: 0.2s;
+            margin-top: 20px;
+            display: inline-block;
+        }
         .back-link:hover { color: #d946ef; text-decoration: underline; }
+
         @media (max-width: 991px) {
             .workspace-wrapper { flex-direction: column; }
-            .info-panel { width: 100%; height: auto; position: relative; border-right: none; border-bottom: 3px solid #8b5cf6; padding: 25px 20px; }
-            .grid-panel { width: 100%; margin-left: 0; padding: 25px 15px; }
-            .input-matrix { grid-template-columns: 1fr; gap: 15px; }
+            .info-panel { width: 100%; height: auto; position: relative; border-right: none; border-bottom: 3px solid #8b5cf6; padding: 30px 20px; }
+            .grid-panel { width: 100%; margin-left: 0; padding: 30px 20px; }
+            .input-matrix { grid-template-columns: 1fr; gap: 20px; }
             .full-width-field { grid-column: span 1; }
         }
     </style>
 </head>
 <body>
+
     <div class="workspace-wrapper">
+        
         <div class="info-panel">
             <div class="info-panel-header">
                 <h2>Add New User</h2>
                 <p>Register new profiles instantly into the system database.</p>
+                
                 <div class="brand-hint">
                     <h4>Important Check</h4>
                     <p>Double-check email addresses and roles before creating the account.</p>
                 </div>
             </div>
+            
             <a href="/admin_dashboard" class="back-link">← Cancel and Exit View</a>
         </div>
+
         <div class="grid-panel">
             <form action="/save_employee" method="POST" enctype="multipart/form-data">
+                
                 <div class="input-matrix">
+                    
                     <div class="matrix-field">
                         <label>Employee ID</label>
                         <input type="text" name="employee_id" placeholder="e.g. EMP8890" required>
                     </div>
+
                     <div class="matrix-field">
                         <label>Full Name</label>
                         <input type="text" name="name" placeholder="Enter Name" required>
                     </div>
+
                     <div class="matrix-field">
                         <label>Email Address</label>
                         <input type="email" name="email" placeholder="Enter E-mail" required>
                     </div>
+
                     <div class="matrix-field">
                         <label>Account Password</label>
                         <input type="password" name="password" placeholder="••••••••" required>
                     </div>
+
                     <div class="matrix-field">
                         <label>Role Scope Privilege</label>
                         <select name="role" required>
@@ -79,30 +203,39 @@
                             <option value="admin">Administrator</option>
                         </select>
                     </div>
+
                     <div class="matrix-field">
                         <label>Department</label>
                         <input type="text" name="department" placeholder="Engineering Operations" required>
                     </div>
+
                     <div class="matrix-field">
                         <label>Home Address</label>
                         <input type="text" name="address" placeholder="City, Country" required>
                     </div>
+
                     <div class="matrix-field">
                         <label>Monthly Salary ($)</label>
                         <input type="text" name="salary" placeholder="e.g. 50000" required>
                     </div>
+
                     <div class="matrix-field full-width-field">
                         <label>Upload Profile Image</label>
                         <div class="file-upload-box">
                             <input type="file" name="image">
                         </div>
                     </div>
+
                 </div>
+
                 <div class="submit-container">
                     <button type="submit">Save Profile Parameters</button>
                 </div>
+
             </form>
         </div>
+
     </div>
+
 </body>
 </html>

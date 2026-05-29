@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="manifest" href="/static/manifest.json">
-    <meta name="theme-color" content="#0d0621">
+   <link rel="manifest" href="/static/manifest.json">
+<meta name="theme-color" content="#0d0621">
+
 <script>
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
@@ -16,44 +17,71 @@
     });
   }
 </script>
-    <style>
+   
+   <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
         body { background: #07020d; display: flex; color: white; min-height: 100vh; width: 100vw; overflow-x: hidden; flex-direction: row; }
-        .sidebar { width: 260px; background: #12072b; padding: 30px 15px; position: fixed; height: 100vh; border-right: 3px solid #8b5cf6; z-index: 100; transition: 0.3s; }
-        .sidebar h1 { font-size: 24px; font-weight: 800; color: #d946ef; margin-bottom: 35px; text-shadow: 0 0 8px #d946ef; white-space: nowrap; text-align: center; }
-        .menu a { display: block; padding: 10px 14px; margin-bottom: 8px; border-radius: 12px; text-decoration: none; color: #c084fc; font-weight: 700; font-size: 16px; transition: 0.3s; border: 2px solid transparent; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        
+        .sidebar { width: 280px; background: #12072b; padding: 35px 20px; position: fixed; height: 100vh; border-right: 3px solid #8b5cf6; z-index: 100; transition: 0.3s; }
+        .sidebar h1 { font-size: 26px; font-weight: 800; color: #d946ef; margin-bottom: 40px; text-shadow: 0 0 8px #d946ef; white-space: nowrap; text-align: center; }
+        
+        .menu a { 
+            display: block; 
+            padding: 12px 14px; 
+            margin-bottom: 10px; 
+            border-radius: 12px; 
+            text-decoration: none; 
+            color: #c084fc; 
+            font-weight: 700; 
+            font-size: 18px; 
+            transition: 0.3s; 
+            border: 2px solid transparent; 
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
         .menu a:hover, .menu a.active { background: #07020d; color: #f472b6; border-color: #d946ef; box-shadow: 0 0 15px rgba(217, 70, 239, 0.4); }
         .menu .accent-link { background: rgba(139, 92, 246, 0.2); border: 2px solid #8b5cf6; }
-        .main { margin-left: 260px; padding: 30px 40px; width: calc(100% - 260px); min-height: 100vh; display: flex; flex-direction: column; gap: 25px; transition: 0.3s; }
-        .topbar h1 { font-size: 36px; font-weight: 800; color: white; }
-        .topbar h3 { color: #c084fc; font-size: 16px; margin-top: 4px; }
-        .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; width: 100%; }
-        .card { background: #12072b; padding: 25px; border-radius: 16px; border: 2px solid #8b5cf6; box-shadow: 0 8px 25px rgba(0,0,0,0.6); }
-        .card p { color: #f472b6; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; white-space: nowrap; }
-        .card h2 { font-size: 42px; font-weight: 800; margin-top: 8px; color: white; }
-        .employee-table { background: #12072b; padding: 25px; border-radius: 20px; border: 2px solid #8b5cf6; box-shadow: 0 10px 30px rgba(0,0,0,0.5); width: 100%; overflow: hidden; }
-        .table-header-container { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; gap: 15px; flex-wrap: wrap; }
-        .table-header-container h2 { font-size: 24px; font-weight: 700; color: #d946ef; }
-        .btn-add-admin { background: #d946ef; color: white; text-decoration: none; padding: 10px 20px; border-radius: 10px; font-size: 14px; font-weight: 800; transition: 0.3s; box-shadow: 0 0 15px #d946ef; white-space: nowrap; }
-        .btn-add-admin:hover { transform: translateY(-2px); box-shadow: 0 0 30px #d946ef; }
+        
+        .main { margin-left: 280px; padding: 40px 30px; width: calc(100% - 280px); min-height: 100vh; transition: 0.3s; }
+        
+        .topbar h1 { font-size: clamp(32px, 4vw, 52px); font-weight: 800; color: white; }
+        .topbar h3 { color: #c084fc; font-size: clamp(16px, 2vw, 22px); margin-top: 8px; margin-bottom: 40px; }
+        
+        .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 25px; margin-bottom: 45px; width: 100%; }
+        .card { background: #12072b; padding: 30px; border-radius: 20px; border: 2px solid #8b5cf6; box-shadow: 0 8px 25px rgba(0,0,0,0.6); }
+        .card p { color: #f472b6; font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; white-space: nowrap; }
+        .card h2 { font-size: clamp(36px, 4vw, 48px); font-weight: 800; margin-top: 12px; color: white; }
+        
+        .employee-table { background: #12072b; padding: 35px 30px; border-radius: 24px; border: 2px solid #8b5cf6; box-shadow: 0 10px 30px rgba(0,0,0,0.5); width: 100%; overflow: hidden; }
+        .table-header-container { display: flex; justify-content: space-between; align-items: center; margin-bottom: 35px; gap: 15px; flex-wrap: wrap; }
+        .table-header-container h2 { font-size: clamp(24px, 3vw, 32px); font-weight: 700; color: #d946ef; }
+        
+        .btn-add-admin { background: #d946ef; color: white; text-decoration: none; padding: 12px 24px; border-radius: 12px; font-size: 16px; font-weight: 800; transition: 0.3s; box-shadow: 0 0 15px #d946ef; white-space: nowrap; }
+        .btn-add-admin:hover { transform: translateY(-3px); box-shadow: 0 0 30px #d946ef; }
+        
         .table-responsive { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
         table { width: 100%; border-collapse: collapse; min-width: 850px; }
-        th { background: #07020d; padding: 14px 16px; text-align: left; font-size: 15px; font-weight: 700; color: #f472b6; border-bottom: 3px solid #d946ef; white-space: nowrap; }
-        td { padding: 14px 16px; font-size: 14px; border-bottom: 2px solid #2e1065; color: #e9d5ff; white-space: nowrap; }
-        .profile { width: 45px; height: 45px; border-radius: 50%; object-fit: cover; border: 2px solid #d946ef; }
-        .actions-cell { display: flex; align-items: center; gap: 8px; white-space: nowrap; }
-        .action-btn { padding: 8px 14px; border-radius: 8px; border: none; color: white; cursor: pointer; text-decoration: none; font-size: 13px; font-weight: 700; display: inline-block; transition: 0.3s; white-space: nowrap; }
+        th { background: #07020d; padding: 18px 14px; text-align: left; font-size: 16px; font-weight: 700; color: #f472b6; border-bottom: 3px solid #d946ef; white-space: nowrap; }
+        td { padding: 18px 14px; font-size: 15px; border-bottom: 2px solid #2e1065; color: #e9d5ff; white-space: nowrap; }
+        
+        .profile { width: 55px; height: 55px; border-radius: 50%; object-fit: cover; border: 2px solid #d946ef; }
+        
+        .actions-cell { display: flex; align-items: center; gap: 10px; white-space: nowrap; }
+        
+        .action-btn { padding: 10px 18px; border-radius: 10px; border: none; color: white; cursor: pointer; text-decoration: none; font-size: 14px; font-weight: 700; display: inline-block; transition: 0.3s; white-space: nowrap; }
         .edit { background: rgba(139, 92, 246, 0.3); color: #c084fc; border: 2px solid #8b5cf6; }
         .edit:hover { background: #8b5cf6; color: white; }
         .delete { background: rgba(244, 114, 182, 0.2); color: #f472b6; border: 2px solid #f472b6; }
         .delete:hover { background: #d946ef; color: white; }
+
         @media (max-width: 991px) {
             body { flex-direction: column; }
             .sidebar { width: 100%; height: auto; position: relative; border-right: none; border-bottom: 3px solid #8b5cf6; padding: 20px; }
             .sidebar h1 { margin-bottom: 20px; }
             .menu { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
-            .menu a { margin-bottom: 0; font-size: 14px; padding: 8px 12px; }
-            .main { margin-left: 0; width: 100%; padding: 20px 15px; gap: 20px; }
+            .menu a { margin-bottom: 0; font-size: 15px; padding: 8px 14px; }
+            .main { margin-left: 0; width: 100%; padding: 30px 15px; }
         }
     </style>
 </head>
@@ -114,7 +142,9 @@
                             <td style="font-weight: 700; color: white;">{{ emp[2] }}</td>
                             <td>{{ emp[3] }}</td>
                             <td>{{ emp[6] }}</td>
+                            
                             <td style="font-weight: 700; color: #38bdf8; text-transform: capitalize;">{{ emp[5] }}</td>
+                            
                             <td>
                                 <div class="actions-cell">
                                     <a href="/edit_profile/{{ emp[0] }}" class="action-btn edit">Modify</a>
