@@ -3,7 +3,6 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Employee Attrition Prediction</title>
 
     <style>
@@ -22,13 +21,13 @@
             no-repeat center center/cover;
 
             min-height:100vh;
-            overflow-x:hidden;
+            overflow:hidden;
 
             display:flex;
             justify-content:center;
             align-items:center;
 
-            padding:15px;
+            padding:12px;
 
             color:white;
 
@@ -40,8 +39,8 @@
 
             position:absolute;
 
-            width:clamp(200px, 40vw, 520px);
-            height:clamp(200px, 40vw, 520px);
+            width:520px;
+            height:520px;
 
             background:rgba(34,197,94,0.12);
 
@@ -60,8 +59,8 @@
 
             position:absolute;
 
-            width:clamp(200px, 40vw, 480px);
-            height:clamp(200px, 40vw, 480px);
+            width:480px;
+            height:480px;
 
             background:rgba(74,222,128,0.08);
 
@@ -76,9 +75,8 @@
         }
 
         .container{
-            width:100%;
-            max-width: 1400px;
-            height:92vh;
+            width:95vw;
+            height:95vh;
 
             position:relative;
             z-index:1;
@@ -138,6 +136,16 @@
             animation: borderGlow 3s linear infinite;
         }
 
+        -webkit-mask{
+            linear-gradient:(#fff 0 0) content-box,
+            linear-gradient(#fff 0 0);
+
+            -webkit-mask-composite:xor;
+            mask-composite:exclude;
+
+            animation:borderGlow 4s linear infinite;
+        }
+
         @keyframes borderGlow{
             0%{
                 filter:hue-rotate(0deg);
@@ -151,11 +159,10 @@
         h1{
             text-align:center;
 
-            font-size:clamp(22px, 4vw, 44px);
+            font-size:48px;
             font-weight:800;
 
             margin-bottom:24px;
-            margin-top: 40px;
 
             letter-spacing:1px;
 
@@ -201,7 +208,7 @@
 
             padding:14px;
 
-            min-height:100px;
+            min-height:110px;
 
             backdrop-filter: blur(8px);
 
@@ -250,14 +257,24 @@
             0 0 22px rgba(74,222,128,0.16);
         }
 
+        .field-box:hover{
+            transform:translateY(-4px);
+
+            border-color:rgba(74,222,128,0.35);
+
+            box-shadow:
+            0 10px 24px rgba(0,0,0,0.30),
+            0 0 22px rgba(74,222,128,0.16);
+        }
+
         .field-box label{
             display:block;
 
-            margin-bottom:10px;
+            margin-bottom:12px;
 
             color:#f8fafc;
 
-            font-size:15px;
+            font-size:26px;
             font-weight:700;
             letter-spacing:0.3px;
         }
@@ -266,7 +283,7 @@
         select{
             width:100%;
 
-            padding:10px 14px;
+            padding:14px 15px;
 
             border:none;
             outline:none;
@@ -280,7 +297,7 @@
 
             color:#e5e7eb;
 
-            font-size:16px;
+            font-size:20px;
             font-weight:600;
 
             transition:0.3s;
@@ -305,10 +322,10 @@
         }
 
         button{
-            width:min(300px, 100%);
+            width:35%;
             margin:20px auto 0 auto;
 
-            padding:14px;
+            padding:18px;
 
             border-radius:22px;
 
@@ -327,7 +344,7 @@
 
             color:#f0fff4;
 
-            font-size:20px;
+            font-size:32px;
             font-weight:800;
 
             cursor:pointer;
@@ -413,13 +430,13 @@
 
             margin:24px auto 0 auto;
 
-            padding:16px 32px;
+            padding:22px 42px;
 
             border-radius:22px;
 
             text-align:center;
 
-            font-size:22px;
+            font-size:38px;
             font-weight:900;
 
             letter-spacing:1px;
@@ -504,6 +521,23 @@
             0 15px 50px rgba(0,0,0,0.45);
         }
 
+        @keyframes resultGlow{
+
+            from{
+                box-shadow:
+                0 0 0 1px rgba(74,222,128,0.08),
+                0 0 18px rgba(34,197,94,0.18),
+                0 12px 35px rgba(0,0,0,0.45);
+            }
+
+            to{
+                box-shadow:
+                0 0 0 1px rgba(74,222,128,0.14),
+                0 0 35px rgba(74,222,128,0.32),
+                0 14px 42px rgba(0,0,0,0.5);
+            }
+        }
+
         .grid::-webkit-scrollbar{
             width:8px;
         }
@@ -518,143 +552,203 @@
             border-radius:10px;
         }
 
-        .probability-box{
-            margin-top:20px;
-            display:flex;
-            justify-content:center;
-            gap:20px;
-            font-size:16px;
-            font-weight:800;
-            flex-wrap: wrap;
-        }
-
-        .stay-prob{
-            min-width:240px;
-            padding:16px 24px;
-            border-radius:22px;
-            text-align:center;
-            background:
-            linear-gradient(
-                135deg,
-                rgba(255,255,255,0.18),
-                rgba(255,255,255,0.08)
-            );
-            backdrop-filter: blur(18px);
-            -webkit-backdrop-filter: blur(18px);
-            border:1px solid rgba(255,255,255,0.28);
-            color:#ffffff;
-            box-shadow:
-            inset 0 1px 1px rgba(255,255,255,0.22),
-            0 0 30px rgba(255,255,255,0.12),
-            0 15px 45px rgba(0,0,0,0.45);
-            letter-spacing:0.5px;
-        }
-
-        .leave-prob{
-            min-width:240px;
-            padding:16px 24px;
-            border-radius:22px;
-            text-align:center;
-            background:
-            linear-gradient(
-                135deg,
-                rgba(25,45,90,0.42),
-                rgba(10,18,40,0.28)
-            );
-            backdrop-filter: blur(18px);
-            -webkit-backdrop-filter: blur(18px);
-            border:1px solid rgba(96,165,250,0.35);
-            color:#dbeafe;
-            box-shadow:
-            inset 0 1px 1px rgba(255,255,255,0.08),
-            0 0 28px rgba(59,130,246,0.18),
-            0 15px 45px rgba(0,0,0,0.5);
-            letter-spacing:0.5px;
-        }
-
-        .risk-box{
-            width:fit-content;
-            margin:20px auto;
-            padding:16px 30px;
-            border-radius:18px;
-            font-size:28px;
-            font-weight:800;
-            background:rgba(255,255,255,0.08);
-            border:1px solid rgba(255,255,255,0.2);
-            backdrop-filter:blur(12px);
-        }
-
-        .dashboard-btn{
-            position:absolute;
-            top:15px;
-            left:15px;
-            z-index:999;
-            text-decoration:none;
-            padding:10px 16px;
-            border-radius:16px;
-            background:
-            linear-gradient(
-                135deg,
-                rgba(18,120,55,0.55),
-                rgba(35,190,95,0.45)
-            );
-            border:1px solid rgba(74,222,128,0.35);
-            color:white;
-            font-size:14px;
-            font-weight:700;
-            backdrop-filter:blur(12px);
-            box-shadow:
-            0 0 18px rgba(34,197,94,0.35),
-            0 8px 20px rgba(0,0,0,0.35);
-            transition:0.3s ease;
-        }
-
-        .dashboard-btn:hover{
-            transform:translateY(-2px);
-            box-shadow:
-            0 0 28px rgba(74,222,128,0.55),
-            0 12px 25px rgba(0,0,0,0.4);
-        }
-
         @media(max-width:1200px){
+
             .grid{
                 grid-template-columns:repeat(3,1fr);
             }
         }
 
-        @media(max-width:992px){
+        @media(max-width:900px){
+
             .grid{
                 grid-template-columns:repeat(2,1fr);
+            }
+
+            h1{
+                font-size:36px;
+            }
+
+            button{
+                font-size:24px;
+            }
+
+            .result{
+                font-size:28px;
             }
         }
 
         @media(max-width:600px){
+
             body{
-                padding:10px;
+                padding:0;
             }
 
             .container{
-                height:auto;
-                min-height:95vh;
-                border-radius:20px;
-                padding:15px;
+                width:100%;
+                height:100vh;
+
+                border-radius:0;
             }
 
             .grid{
                 grid-template-columns:1fr;
-                overflow-y:visible;
             }
 
-            .dashboard-btn{
-                position:relative;
-                display:inline-block;
-                top:0;
-                left:0;
-                margin-bottom:15px;
-                text-align:center;
-                width:auto;
+            h1{
+                font-size:28px;
+            }
+
+            button{
+                font-size:20px;
+                padding:16px;
+            }
+
+            .result{
+                font-size:22px;
             }
         }
+
+      .probability-box{
+
+        margin-top:24px;
+
+        display:flex;
+        justify-content:center;
+        gap:28px;
+
+        font-size:24px;
+        font-weight:800;
+    }
+
+    .stay-prob{
+
+        min-width:300px;
+
+        padding:22px 34px;
+
+        border-radius:22px;
+
+        text-align:center;
+
+        background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,0.18),
+            rgba(255,255,255,0.08)
+        );
+
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+
+        border:1px solid rgba(255,255,255,0.28);
+
+        color:#ffffff;
+
+        box-shadow:
+        inset 0 1px 1px rgba(255,255,255,0.22),
+        0 0 30px rgba(255,255,255,0.12),
+        0 15px 45px rgba(0,0,0,0.45);
+
+        letter-spacing:0.5px;
+    }
+
+    .leave-prob{
+
+        min-width:300px;
+
+        padding:22px 34px;
+
+        border-radius:22px;
+
+        text-align:center;
+
+        background:
+        linear-gradient(
+            135deg,
+            rgba(25,45,90,0.42),
+            rgba(10,18,40,0.28)
+        );
+
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+
+        border:1px solid rgba(96,165,250,0.35);
+
+        color:#dbeafe;
+
+        box-shadow:
+        inset 0 1px 1px rgba(255,255,255,0.08),
+        0 0 28px rgba(59,130,246,0.18),
+        0 15px 45px rgba(0,0,0,0.5);
+
+        letter-spacing:0.5px;
+    }
+
+    .risk-box{
+
+        width:fit-content;
+
+        margin:20px auto;
+
+        padding:16px 30px;
+
+        border-radius:18px;
+
+        font-size:28px;
+        font-weight:800;
+
+        background:rgba(255,255,255,0.08);
+
+        border:1px solid rgba(255,255,255,0.2);
+
+        backdrop-filter:blur(12px);
+    }
+
+    .dashboard-btn{
+        position:absolute;
+
+        top:18px;
+        left:18px;
+
+        z-index:999;
+
+        text-decoration:none;
+
+        padding:14px 18px;
+
+        border-radius:16px;
+
+        background:
+        linear-gradient(
+            135deg,
+            rgba(18,120,55,0.55),
+            rgba(35,190,95,0.45)
+        );
+
+        border:1px solid rgba(74,222,128,0.35);
+
+        color:white;
+
+        font-size:18px;
+        font-weight:700;
+
+        backdrop-filter:blur(12px);
+
+        box-shadow:
+        0 0 18px rgba(34,197,94,0.35),
+        0 8px 20px rgba(0,0,0,0.35);
+
+        transition:0.3s ease;
+    }
+
+    .dashboard-btn:hover{
+        transform:translateY(-2px);
+
+        box-shadow:
+        0 0 28px rgba(74,222,128,0.55),
+        0 12px 25px rgba(0,0,0,0.4);
+    }
     </style>
 </head>
 
@@ -672,7 +766,7 @@
 
         <div class="grid">
 
-            <div class="field-box" style="border-color: rgba(0, 240, 255, 0.45); background: rgba(0, 240, 255, 0.02); grid-column: 1 / -1;">
+            <div class="field-box" style="border-color: rgba(0, 240, 255, 0.45); background: rgba(0, 240, 255, 0.02);">
                 <label style="color: #00f0ff;">Select Target Employee Profile</label>
                 <select name="selected_employee_id" required style="border-color: rgba(0, 240, 255, 0.45);">
                     <option value="" disabled selected>-- Choose an Employee Profile Node --</option>

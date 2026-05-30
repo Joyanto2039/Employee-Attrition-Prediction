@@ -8,20 +8,20 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-        body { background: #07020d; display: flex; color: white; min-height: 100vh; flex-direction: row; }
+        body { background: #07020d; display: flex; color: white; min-height: 100vh; }
         
-        .sidebar { width: 280px; background: #12072b; padding: 30px 20px; position: fixed; height: 100vh; border-right: 3px solid #8b5cf6; z-index: 10; left: 0; top: 0; }
-        .sidebar h1 { font-size: 28px; font-weight: 800; color: #d946ef; margin-bottom: 30px; text-shadow: 0 0 8px #d946ef; white-space: nowrap; }
+        .sidebar { width: 340px; background: #12072b; padding: 35px 25px; position: fixed; height: 100vh; border-right: 3px solid #8b5cf6; }
+        .sidebar h1 { font-size: 32px; font-weight: 800; color: #d946ef; margin-bottom: 40px; text-shadow: 0 0 8px #d946ef; white-space: nowrap; }
         
         .menu a { 
             display: block; 
-            padding: 12px 14px; 
+            padding: 14px 16px; 
             margin-bottom: 10px; 
             border-radius: 12px; 
             text-decoration: none; 
             color: #c084fc; 
             font-weight: 800; 
-            font-size: 18px; 
+            font-size: 22px; 
             transition: 0.3s; 
             border: 2px solid transparent; 
             white-space: nowrap;
@@ -31,36 +31,36 @@
         .menu a:hover, .menu a.active { background: #07020d; color: #f472b6; border-color: #d946ef; box-shadow: 0 0 15px rgba(217, 70, 239, 0.4); }
         .menu .accent-link { background: rgba(139, 92, 246, 0.2); border: 2px solid #8b5cf6; }
         
-        .main { margin-left: 280px; padding: 40px max(20px, 4vw); width: calc(100% - 280px); min-height: 100vh; max-width: 1800px; }
+        .main { margin-left: 340px; padding: 60px 80px; width: calc(100% - 340px); }
         
-        .topbar h1 { font-size: clamp(32px, 5vw, 56px); font-weight: 800; color: white; }
-        .topbar h3 { color: #c084fc; font-size: clamp(18px, 2.5vw, 26px); margin-top: 12px; margin-bottom: 40px; }
+        .topbar h1 { font-size: 56px; font-weight: 800; color: white; }
+        .topbar h3 { color: #c084fc; font-size: 26px; margin-top: 12px; margin-bottom: 60px; }
         
-        .employee-table { background: #12072b; padding: clamp(20px, 4vw, 40px); border-radius: 32px; border: 2px solid #8b5cf6; width: 100%; }
-        .employee-table h2 { font-size: clamp(24px, 3vw, 36px); font-weight: 700; color: #d946ef; margin-bottom: 30px; }
+        .employee-table { background: #12072b; padding: 55px; border-radius: 32px; border: 2px solid #8b5cf6; }
+        .employee-table h2 { font-size: 36px; font-weight: 700; color: #d946ef; margin-bottom: 45px; }
         
-        .table-wrapper { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
         table { width: 100%; border-collapse: collapse; }
-        th { background: #07020d; padding: 20px 16px; text-align: left; font-size: 18px; font-weight: 700; color: #f472b6; border-bottom: 3px solid #d946ef; white-space: nowrap; }
-        td { padding: 20px 16px; font-size: 16px; border-bottom: 2px solid #2e1065; color: #e9d5ff; transition: 0.2s; white-space: nowrap; }
+        th { background: #07020d; padding: 28px 24px; text-align: left; font-size: 22px; font-weight: 700; color: #f472b6; border-bottom: 3px solid #d946ef; white-space: nowrap; }
+        td { padding: 32px 24px; font-size: 20px; border-bottom: 2px solid #2e1065; color: #e9d5ff; transition: 0.2s; white-space: nowrap; }
         
-        .profile { width: 60px; height: 60px; border-radius: 50%; object-fit: cover; border: 2px solid #d946ef; }
+        .profile { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 2px solid #d946ef; }
         
         .actions-cell {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 16px;
             white-space: nowrap;
+            width: 100%;
         }
 
         .action-btn { 
-            padding: 10px 20px; 
-            border-radius: 14px; 
+            padding: 16px 28px; 
+            border-radius: 16px; 
             border: none; 
             color: white; 
             cursor: pointer; 
             text-decoration: none; 
-            font-size: 15px; 
+            font-size: 18px; 
             font-weight: 700; 
             display: inline-block; 
             transition: 0.3s; 
@@ -75,9 +75,9 @@
             background: #22c55e; 
             color: #07020d; 
             text-decoration: none; 
-            padding: 10px 20px; 
-            border-radius: 14px; 
-            font-size: 15px; 
+            padding: 16px 28px; 
+            border-radius: 16px; 
+            font-size: 18px; 
             font-weight: 800; 
             box-shadow: 0 0 15px #22c55e; 
             opacity: 0;
@@ -103,22 +103,21 @@
             background: rgba(255, 255, 255, 0.02);
         }
 
+        /* 🔍 FEATURE 2: SEARCH & FILTER CSS MODIFIERS */
         .filter-panel {
             display: flex;
-            gap: 16px;
-            margin-bottom: 30px;
+            gap: 20px;
+            margin-bottom: 35px;
             width: 100%;
-            flex-wrap: wrap;
         }
         .search-input {
             flex: 2;
-            min-width: 240px;
-            padding: 14px 20px;
+            padding: 16px 24px;
             background: #07020d;
             border: 2px solid #8b5cf6;
             border-radius: 16px;
             color: white;
-            font-size: 16px;
+            font-size: 18px;
             outline: none;
             transition: 0.3s;
         }
@@ -128,13 +127,12 @@
         }
         .filter-select {
             flex: 1;
-            min-width: 180px;
-            padding: 14px 20px;
+            padding: 16px 24px;
             background: #07020d;
             border: 2px solid #8b5cf6;
             border-radius: 16px;
             color: #c084fc;
-            font-size: 16px;
+            font-size: 18px;
             font-weight: 600;
             outline: none;
             cursor: pointer;
@@ -142,17 +140,6 @@
         }
         .filter-select:focus {
             border-color: #d946ef;
-        }
-
-        @media (max-width: 992px) {
-            body { flex-direction: column; }
-            .sidebar { width: 100%; height: auto; position: relative; border-right: none; border-bottom: 3px solid #8b5cf6; padding: 20px; }
-            .sidebar h1 { margin-bottom: 20px; text-align: center; }
-            .menu { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
-            .menu a { margin-bottom: 0; font-size: 15px; padding: 10px 14px; }
-            .menu .sign-out { margin-top: 0 !important; }
-            .main { margin-left: 0; width: 100%; padding: 30px 15px; }
-            .btn-predict-green { opacity: 1; visibility: visible; transform: none; }
         }
     </style>
 </head>
@@ -165,7 +152,7 @@
             <a href="/admin_employees" class="active">Employee List</a>
             <a href="/add_employee">Add Employee</a>
             <a href="/dashboard" class="accent-link">View Predictions</a>
-            <a href="/logout" class="sign-out" style="margin-top: 50px; color: #f472b6;">Sign Out</a>
+            <a href="/logout" style="margin-top: 50px; color: #f472b6;">Sign Out</a>
         </div>
     </div>
     <div class="main">
@@ -187,41 +174,39 @@
                 </select>
             </div>
 
-            <div class="table-wrapper">
-                <table id="employeeTable">
-                    <thead>
-                        <tr>
-                            <th>Avatar</th>
-                            <th>User ID</th>
-                            <th>Full Name</th>
-                            <th>Email Address</th>
-                            <th>Department</th>
-                            <th>Salary</th>
-                            <th style="width: 35%;">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for emp in employees %}
-                        <tr>
-                            <td><img class="profile" src="{{ url_for('static', filename='uploads/' + emp[8]) }}" onerror="this.src='https://via.placeholder.com/80'"></td>
-                            <td><code style="font-size: 16px;">{{ emp[1] }}</code></td>
-                            <td style="font-weight: 700; color: white;">{{ emp[2] }}</td>
-                            <td>{{ emp[3] }}</td>
-                            <td>{{ emp[6] }}</td>
-                            <td style="font-weight: 700; color: #22c55e;">${{ emp[9] if emp[9] else '0' }}</td>
-                            <td>
-                                <div class="actions-cell">
-                                    <a href="/edit_profile/{{ emp[0] }}" class="action-btn edit">Modify</a>
-                                    <a href="/delete_employee/{{ emp[0] }}" onclick="return confirm('Delete this employee profile?');" class="action-btn delete">Delete</a>
-                                    
-                                    <a href="/predict_form" class="btn-predict-green">Predict Attrition</a>
-                                </div>
-                            </td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
+            <table id="employeeTable">
+                <thead>
+                    <tr>
+                        <th>Avatar</th>
+                        <th>User ID</th>
+                        <th>Full Name</th>
+                        <th>Email Address</th>
+                        <th>Department</th>
+                        <th>Salary</th>
+                        <th style="width: 35%;">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for emp in employees %}
+                    <tr>
+                        <td><img class="profile" src="{{ url_for('static', filename='uploads/' + emp[8]) }}" onerror="this.src='https://via.placeholder.com/80'"></td>
+                        <td><code style="font-size: 18px;">{{ emp[1] }}</code></td>
+                        <td style="font-weight: 700; color: white;">{{ emp[2] }}</td>
+                        <td>{{ emp[3] }}</td>
+                        <td>{{ emp[6] }}</td>
+                        <td style="font-weight: 700; color: #22c55e;">${{ emp[9] if emp[9] else '0' }}</td>
+                        <td>
+                            <div class="actions-cell">
+                                <a href="/edit_profile/{{ emp[0] }}" class="action-btn edit">Modify</a>
+                                <a href="/delete_employee/{{ emp[0] }}" onclick="return confirm('Delete this employee profile?');" class="action-btn delete">Delete</a>
+                                
+                                <a href="/predict_form" class="btn-predict-green">Predict Attrition</a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         </div>
     </div>
 
@@ -233,9 +218,9 @@
         let tr = table.getElementsByTagName("tr");
 
         for (let i = 1; i < tr.length; i++) {
-            let tdID = tr[i].getElementsByTagName("td")[1];   
-            let tdName = tr[i].getElementsByTagName("td")[2]; 
-            let tdDept = tr[i].getElementsByTagName("td")[4]; 
+            let tdID = tr[i].getElementsByTagName("td")[1];   // Column 2: User ID
+            let tdName = tr[i].getElementsByTagName("td")[2]; // Column 3: Full Name
+            let tdDept = tr[i].getElementsByTagName("td")[4]; // Column 5: Department
 
             if (tdName || tdID || tdDept) {
                 let idText = tdID.textContent || tdID.innerText;

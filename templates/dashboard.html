@@ -16,12 +16,11 @@
         }
 
         body {
-            min-height: 100vh;
+            height: 100vh;
             width: 100vw;
             background: radial-gradient(circle at center, #1a1a1a 0%, #050505 100%);
             color: white;
             overflow-x: hidden;
-            padding-top: 90px;
         }
 
         .delete-cell {
@@ -49,30 +48,28 @@
 
         .top-bar {
             position: fixed;
-            top: 0;
+            top: 25px;
             left: 0;
             width: 100%;
-            padding: 15px max(15px, 3vw);
+            padding: 0 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             z-index: 1000;
-            background: rgba(5, 5, 5, 0.8);
-            backdrop-filter: blur(10px);
         }
 
         .btn {
-            padding: 10px 20px;
+            padding: 14px 28px;
             border-radius: 12px;
             background: rgba(0, 255, 136, 0.05);
             backdrop-filter: blur(12px);
             border: 2px solid rgba(0, 255, 136, 0.6);
             color: #00ff88;
             text-decoration: none;
-            font-size: 14px;
+            font-size: 16px;
             font-weight: 900;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             display: inline-block;
             box-shadow: 0 0 20px rgba(0, 255, 136, 0.15);
@@ -100,15 +97,15 @@
 
         .header {
             width: 100%;
-            padding: 30px 15px;
+            padding: 60px 20px 40px;
             text-align: center;
         }
 
         .header h1 {
-            font-size: clamp(24px, 4vw, 48px);
+            font-size: 48px;
             font-weight: 900;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
             background: linear-gradient(to bottom, #fff 40%, #00ff88 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -117,18 +114,24 @@
         }
 
         @keyframes titlePulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.9; transform: scale(1.01); }
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.9;
+                transform: scale(1.01);
+            }
         }
 
         .result {
-            margin: 0 auto 30px;
+            margin: 0 auto 45px;
             width: fit-content;
-            padding: 16px min(40px, 8vw);
+            padding: 22px 70px;
             border-radius: 18px;
-            font-size: clamp(20px, 3vw, 44px);
+            font-size: 44px;
             font-weight: 900;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
             text-transform: uppercase;
             border: 3px solid;
             background: rgba(15, 15, 15, 0.78);
@@ -136,7 +139,6 @@
             transition: all 0.4s ease;
             box-shadow: 0 0 10px rgba(255,255,255,0.04), inset 0 0 15px rgba(255,255,255,0.03);
             text-shadow: 0 0 4px rgba(255,255,255,0.08);
-            text-align: center;
         }
 
         .result.stay {
@@ -166,17 +168,14 @@
         .kpi {
             display: flex;
             justify-content: center;
-            gap: 20px;
-            padding: 0 max(15px, 4vw) 30px;
-            flex-wrap: wrap;
-            width: 100%;
+            gap: 30px;
+            padding: 0 50px 45px;
         }
 
         .card {
             flex: 1;
-            min-width: 240px;
             max-width: 380px;
-            padding: 24px;
+            padding: 35px;
             border-radius: 24px;
             background: linear-gradient(145deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
             border: 1px solid rgba(255,255,255,0.1);
@@ -190,26 +189,23 @@
 
         .card h3 {
             color: #aaa;
-            font-size: 12px;
-            letter-spacing: 2px;
-            margin-bottom: 12px;
+            font-size: 14px;
+            letter-spacing: 3px;
+            margin-bottom: 18px;
             text-transform: uppercase;
         }
 
         .card .value {
-            font-size: clamp(36px, 4vw, 58px);
+            font-size: 58px;
             font-weight: 900;
             color: #00ff88;
         }
 
         .main {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-            gap: 30px;
-            padding: 0 max(15px, 4vw) 40px;
-            width: 100%;
-            max-width: 1800px;
-            margin: 0 auto;
+            grid-template-columns: 1.6fr 1fr;
+            gap: 35px;
+            padding: 0 50px 60px;
         }
 
         .table-box,
@@ -217,16 +213,9 @@
             background: rgba(10, 10, 10, 0.7);
             backdrop-filter: blur(25px);
             border-radius: 30px;
-            padding: clamp(15px, 3vw, 30px);
+            padding: 40px;
             border: 1px solid rgba(255,255,255,0.1);
             box-shadow: 0 25px 50px rgba(0,0,0,0.5);
-            width: 100%;
-        }
-
-        .table-wrapper {
-            width: 100%;
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
         }
 
         table {
@@ -237,41 +226,39 @@
 
         th {
             color: #00ff88;
-            padding: 14px;
-            font-size: 13px;
+            padding: 18px;
+            font-size: 14px;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
             text-align: center;
             border-bottom: 2px solid rgba(0, 255, 136, 0.3);
-            white-space: nowrap;
         }
 
         td {
-            padding: 16px;
+            padding: 24px;
             text-align: center;
-            font-size: 16px;
+            font-size: 24px;
             background: rgba(255,255,255,0.03);
             transition: 0.2s;
-            white-space: nowrap;
         }
 
-        tr:hover td { background: rgba(255,255,255,0.07); }
-        tr td:first-child { border-radius: 15px 0 0 15px; font-weight: bold; }
-        tr td:last-child { border-radius: 0 15px 15px 0; }
+        tr:hover td {
+            background: rgba(255,255,255,0.07);
+        }
+
+        tr td:first-child {
+            border-radius: 15px 0 0 15px;
+            font-weight: bold;
+        }
+
+        tr td:last-child {
+            border-radius: 0 15px 15px 0;
+        }
 
         .chart-container {
             position: relative;
-            height: 340px;
+            height: 420px;
             width: 100%;
-        }
-
-        @media (max-width: 1024px) {
-            .main { grid-template-columns: 1fr; }
-            .delete-btn { opacity: 1; transform: none; }
-        }
-
-        @media (max-width: 576px) {
-            .main { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -322,87 +309,85 @@
 
 <div class="main">
     <div class="table-box">
-        <div class="table-wrapper">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Identifier</th>
-                        <th>User ID</th>
-                        <th>Prediction</th>
-                        <th>Stay %</th>
-                        <th>Leave %</th>
-                        <th>Status</th>
-                        <th>Delete</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for row in data %}
-                    <tr>
-                        <td>#{{ loop.index }}</td>
-                        
-                        <td class="random-userid-color" style="font-family: 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-weight: 700; letter-spacing: 0.5px;">
-                            {{ row[5] if row[5] else 'N/A' }}
-                        </td>
+        <table>
+            <thead>
+                <tr>
+                    <th>Identifier</th>
+                    <th>User ID</th>
+                    <th>Prediction</th>
+                    <th>Stay %</th>
+                    <th>Leave %</th>
+                    <th>Status</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in data %}
+                <tr>
+                    <td>#{{ loop.index }}</td>
+                    
+                    <td class="random-userid-color" style="font-family: 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-weight: 700; letter-spacing: 0.5px;">
+                        {{ row[5] if row[5] else 'N/A' }}
+                    </td>
 
-                        <td style="font-weight: 800; color: #fff;">
-                            {% if row[1] == 'Stay' and row[4] == 'Low' %}
-                                Employee Will Stay
-                            {% elif row[1] == 'Leave' and row[4] == 'High' %}
-                                Critical Attrition Risk Detected
+                    <td style="font-weight: 800; color: #fff;">
+                        {% if row[1] == 'Stay' and row[4] == 'Low' %}
+                            Employee Will Stay
+                        {% elif row[1] == 'Leave' and row[4] == 'High' %}
+                            Critical Attrition Risk Detected
+                        {% else %}
+                            Employee May Leave Company
+                        {% endif %}
+                    </td>
+
+                    <td style="color: #ffd700; font-weight: bold;">
+                        {{ row[2] }}%
+                    </td>
+
+                    <td style="color: #ff3b3b; font-weight: bold;">
+                        {{ row[3] }}%
+                    </td>
+
+                    <td>
+                        <span style="
+                            display: inline-block;
+                            padding: 10px 20px;
+                            border-radius: 10px;
+                            font-size: 18px;
+                            font-weight: 700;
+                            border: 1px solid;
+                            {% if 'Low' in row[4] %}
+                                background: rgba(0, 25, 136, 0.18);
+                                color: #00ff88;
+                                border-color: rgba(0, 255, 136, 0.7);
+                                box-shadow: 0 0 10px rgba(0, 255, 136, 0.35);
+                            {% elif 'Medium' in row[4] %}
+                                background: rgba(255, 193, 7, 0.18);
+                                color: #ffc107;
+                                border-color: rgba(255, 193, 7, 0.7);
+                                box-shadow: 0 0 10px rgba(255, 193, 7, 0.35);
                             {% else %}
-                                Employee May Leave Company
+                                background: rgba(255, 59, 59, 0.18);
+                                color: #ff3b3b;
+                                border-color: rgba(255, 59, 59, 0.7);
+                                box-shadow: 0 0 10px rgba(255, 59, 59, 0.35);
                             {% endif %}
-                        </td>
+                        ">
+                            {% if row[4] == 'Low' %}Low Risk{% elif row[4] == 'Medium' %}Medium Risk{% else %}High Risk{% endif %}
+                        </span>
+                    </td>
 
-                        <td style="color: #ffd700; font-weight: bold;">
-                            {{ row[2] }}%
-                        </td>
-
-                        <td style="color: #ff3b3b; font-weight: bold;">
-                            {{ row[3] }}%
-                        </td>
-
-                        <td>
-                            <span style="
-                                display: inline-block;
-                                padding: 8px 16px;
-                                border-radius: 10px;
-                                font-size: 14px;
-                                font-weight: 700;
-                                border: 1px solid;
-                                {% if 'Low' in row[4] %}
-                                    background: rgba(0, 25, 136, 0.18);
-                                    color: #00ff88;
-                                    border-color: rgba(0, 255, 136, 0.7);
-                                    box-shadow: 0 0 10px rgba(0, 255, 136, 0.35);
-                                {% elif 'Medium' in row[4] %}
-                                    background: rgba(255, 193, 7, 0.18);
-                                    color: #ffc107;
-                                    border-color: rgba(255, 193, 7, 0.7);
-                                    box-shadow: 0 0 10px rgba(255, 193, 7, 0.35);
-                                {% else %}
-                                    background: rgba(255, 59, 59, 0.18);
-                                    color: #ff3b3b;
-                                    border-color: rgba(255, 59, 59, 0.7);
-                                    box-shadow: 0 0 10px rgba(255, 59, 59, 0.35);
-                                {% endif %}
-                            ">
-                                {% if row[4] == 'Low' %}Low Risk{% elif row[4] == 'Medium' %}Medium Risk{% else %}High Risk{% endif %}
-                            </span>
-                        </td>
-
-                        <td class="delete-cell">
-                            <a href="/delete/{{ row[0] }}" class="delete-btn">Delete</a>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
+                    <td class="delete-cell">
+                        <a href="/delete/{{ row[0] }}" class="delete-btn">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
 
     <div class="chart-box">
-        <h3 style="text-align: center; color: #777; margin-bottom: 20px; text-transform: uppercase; font-size: 13px; letter-spacing: 3px;">
+        <h3 style="text-align: center; color: #777; margin-bottom: 30px; text-transform: uppercase; font-size: 14px; letter-spacing: 5px;">
             Probability Insights
         </h3>
         <div class="chart-container">
@@ -451,9 +436,9 @@ new Chart(document.getElementById('pie'), {
                 position: 'bottom',
                 labels: {
                     color: '#ccc',
-                    padding: 20,
+                    padding: 35,
                     font: {
-                        size: 14,
+                        size: 15,
                         weight: 'bold'
                     },
                     usePointStyle: true
