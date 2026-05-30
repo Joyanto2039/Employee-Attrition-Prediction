@@ -19,26 +19,29 @@
             min-height: 100vh; 
             width: 100vw; 
             overflow-x: hidden; 
+            flex-direction: row;
         }
 
         .sidebar { 
-            width: 340px; 
+            width: 280px; 
             background: #0d0621; 
-            padding: 40px 25px; 
+            padding: 30px 20px; 
             position: fixed; 
             height: 100vh; 
             border-right: 3px solid #8b5cf6; 
             z-index: 100;
             box-shadow: 10px 0 30px rgba(139, 92, 246, 0.15);
+            left: 0;
+            top: 0;
         }
 
         .sidebar h1 { 
             font-family: 'Orbitron', sans-serif;
-            font-size: 32px; 
+            font-size: 26px; 
             font-weight: 900; 
             color: #d946ef; 
-            margin-bottom: 50px; 
-            letter-spacing: 3px;
+            margin-bottom: 40px; 
+            letter-spacing: 2px;
             text-shadow: 0 0 15px rgba(217, 70, 239, 0.6);
             text-transform: uppercase;
         }
@@ -51,11 +54,11 @@
 
         .menu a { 
             display: block; 
-            padding: 12px 20px; 
+            padding: 12px 16px; 
             text-decoration: none; 
             color: #c084fc; 
             font-weight: 800; 
-            font-size: 22px;   
+            font-size: 18px;   
             border-radius: 14px; 
             transition: 0.3s; 
             border: 2px solid transparent; 
@@ -84,14 +87,14 @@
         }
 
         .menu .sign-out {
-            margin-top: 60px; 
+            margin-top: 40px; 
             color: #f472b6; 
         }
 
         .main { 
-            margin-left: 340px; 
-            padding: 80px 100px; 
-            width: calc(100% - 340px); 
+            margin-left: 280px; 
+            padding: 50px max(20px, 5vw); 
+            width: calc(100% - 280px); 
             background-image: 
                 linear-gradient(rgba(0, 245, 212, 0.015) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(0, 245, 212, 0.015) 1px, transparent 1px),
@@ -101,22 +104,22 @@
 
         .topbar h1 { 
             font-family: 'Orbitron', sans-serif;
-            font-size: 64px; 
+            font-size: clamp(32px, 5vw, 64px); 
             font-weight: 900; 
             color: #fff;
             text-transform: uppercase;
-            letter-spacing: -2px;
+            letter-spacing: -1px;
         }
 
         .topbar h1 span { color: #00f5d4; text-shadow: 0 0 25px rgba(0, 245, 212, 0.8); }
 
         .topbar h3 { 
             color: #8b5cf6; 
-            font-size: 20px; 
-            margin-top: 5px; 
-            margin-bottom: 60px; 
+            font-size: clamp(14px, 2vw, 20px); 
+            margin-top: 8px; 
+            margin-bottom: 40px; 
             text-transform: uppercase;
-            letter-spacing: 6px;
+            letter-spacing: 4px;
             font-weight: 600;
         }
 
@@ -124,7 +127,7 @@
             background: rgba(18, 7, 43, 0.4); 
             backdrop-filter: blur(12px); 
             -webkit-backdrop-filter: blur(12px);
-            padding: 60px; 
+            padding: clamp(24px, 5vw, 60px); 
             border-radius: 24px; 
             border: 1px solid rgba(0, 245, 212, 0.15);
             box-shadow: 0 25px 50px rgba(0,0,0,0.6);
@@ -133,24 +136,24 @@
 
         .glass-container::before {
             content: ""; position: absolute;
-            top: -2px; left: -2px; width: 60px; height: 60px;
+            top: -2px; left: -2px; width: 40px; height: 40px;
             border-top: 4px solid #00f5d4; border-left: 4px solid #00f5d4;
             border-radius: 24px 0 0 0;
         }
         .glass-container::after {
             content: ""; position: absolute;
-            bottom: -2px; right: -2px; width: 60px; height: 60px;
+            bottom: -2px; right: -2px; width: 40px; height: 40px;
             border-bottom: 4px solid #d946ef; border-right: 4px solid #d946ef;
             border-radius: 0 0 24px 0;
         }
 
-        .section { margin-bottom: 50px; }
+        .section { margin-bottom: 40px; }
         
         .section h2 { 
             font-family: 'Orbitron', sans-serif;
-            font-size: 28px; 
+            font-size: clamp(20px, 3.5vw, 28px); 
             color: #ffffff; 
-            margin-bottom: 25px; 
+            margin-bottom: 20px; 
             display: flex;
             align-items: center;
             gap: 15px;
@@ -158,16 +161,16 @@
         }
 
         .section h2 i { 
-            font-size: 18px; 
+            font-size: 16px; 
             color: #00f5d4; 
             background: rgba(0, 245, 212, 0.08);
-            padding: 12px;
+            padding: 10px;
             border-radius: 10px;
             border: 1px solid rgba(0, 245, 212, 0.25);
         }
 
         .section p { 
-            font-size: 21px; 
+            font-size: clamp(16px, 2.2vw, 21px); 
             color: #e2d3f5; 
             line-height: 1.8; 
             font-weight: 400;
@@ -176,14 +179,14 @@
 
         .tech-grid { 
             display: grid; 
-            grid-template-columns: repeat(3, 1fr); 
-            gap: 25px; 
-            margin-top: 40px; 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 20px; 
+            margin-top: 30px; 
         }
 
         .tech-card { 
             background: linear-gradient(135deg, #0d0621 0%, #06020f 100%); 
-            padding: 45px 35px; 
+            padding: 30px 24px; 
             border: 1px solid rgba(139, 92, 246, 0.15);
             border-radius: 16px;
             transition: all 0.4s ease;
@@ -199,15 +202,15 @@
         .tech-card h4 { 
             font-family: 'Orbitron', sans-serif;
             color: #ffffff; 
-            font-size: 22px; 
-            margin-bottom: 20px; 
-            letter-spacing: 2px;
+            font-size: 18px; 
+            margin-bottom: 16px; 
+            letter-spacing: 1px;
             display: flex;
             align-items: center;
         }
 
         .tech-card p { 
-            font-size: 16px; 
+            font-size: 14px; 
             color: #bfaecf; 
             line-height: 1.7;  
             font-weight: 400;  
@@ -218,7 +221,7 @@
             background: #00f5d4;
             border-radius: 50%;
             display: inline-block;
-            margin-right: 14px;
+            margin-right: 12px;
             box-shadow: 0 0 10px #00f5d4;
             transition: 0.3s;
         }
@@ -226,6 +229,16 @@
         .tech-card:hover .status-dot {
             background: #d946ef;
             box-shadow: 0 0 12px #d946ef;
+        }
+
+        @media (max-width: 992px) {
+            body { flex-direction: column; }
+            .sidebar { width: 100%; height: auto; position: relative; border-right: none; border-bottom: 3px solid #8b5cf6; padding: 20px; }
+            .sidebar h1 { margin-bottom: 20px; text-align: center; }
+            .menu { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; flex-direction: row; }
+            .menu a { margin-bottom: 0; font-size: 15px; padding: 10px 14px; width: auto; }
+            .menu .sign-out { margin-top: 0 !important; }
+            .main { margin-left: 0; width: 100%; padding: 30px 15px; }
         }
     </style>
 </head>

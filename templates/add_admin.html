@@ -22,30 +22,33 @@
             width: 100%; 
             min-height: 100vh;
             background: #0b1410; 
+            flex-direction: row;
         }
 
         .info-panel { 
             width: 25%; 
             background: linear-gradient(145deg, #0a2218, #040a07); 
-            padding: 80px 50px; 
+            padding: 40px 30px; 
             display: flex; 
             flex-direction: column; 
             justify-content: space-between; 
             border-right: 3px solid #22c55e; 
             position: fixed;
             height: 100vh;
+            left: 0;
+            top: 0;
         }
-        .info-panel-header h2 { font-size: 44px; font-weight: 800; color: #22c55e; line-height: 1.2; text-shadow: 0 0 15px rgba(34, 197, 94, 0.4); }
-        .info-panel-header p { font-size: 20px; color: #a7f3d0; margin-top: 20px; font-weight: 600; }
+        .info-panel-header h2 { font-size: clamp(28px, 3.5vw, 44px); font-weight: 800; color: #22c55e; line-height: 1.2; text-shadow: 0 0 15px rgba(34, 197, 94, 0.4); }
+        .info-panel-header p { font-size: clamp(15px, 1.5vw, 20px); color: #a7f3d0; margin-top: 20px; font-weight: 600; }
         
-        .brand-hint { background: rgba(217, 70, 239, 0.1); border-left: 4px solid #d946ef; padding: 25px; border-radius: 0 16px 16px 0; margin-top: 50px; }
-        .brand-hint h4 { color: #d946ef; font-size: 20px; font-weight: 700; margin-bottom: 8px; }
-        .brand-hint p { color: #f5f5f5; font-size: 16px; line-height: 1.5; }
+        .brand-hint { background: rgba(217, 70, 239, 0.1); border-left: 4px solid #d946ef; padding: 20px; border-radius: 0 16px 16px 0; margin-top: 30px; }
+        .brand-hint h4 { color: #d946ef; font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+        .brand-hint p { color: #f5f5f5; font-size: 14px; line-height: 1.5; }
 
         .grid-panel { 
             width: 75%; 
             margin-left: 25%; 
-            padding: 80px 100px; 
+            padding: 60px clamp(20px, 6vw, 100px); 
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -56,42 +59,42 @@
         .input-matrix { 
             display: grid; 
             grid-template-columns: repeat(2, 1fr); 
-            gap: 40px; 
+            gap: 30px; 
             width: 100%;
         }
         
         .full-width-field { grid-column: span 2; }
 
         .matrix-field { display: flex; flex-direction: column; }
-        .matrix-field label { font-size: 16px; font-weight: 700; color: #6ee7b7; margin-bottom: 14px; text-transform: uppercase; letter-spacing: 1px; }
+        .matrix-field label { font-size: 14px; font-weight: 700; color: #6ee7b7; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px; }
         
         .matrix-field input, .matrix-field select { 
             width: 100%; 
-            padding: 20px 24px; 
+            padding: 16px 20px; 
             border-radius: 16px; 
             border: 2px solid #10b981; 
             background: #060b09; 
             color: white; 
-            font-size: 19px; 
+            font-size: 16px; 
             outline: none; 
             transition: 0.3s; 
         }
         .matrix-field input:focus, .matrix-field select:focus { border-color: #22c55e; box-shadow: 0 0 20px rgba(34, 197, 94, 0.4); }
         
-        .file-upload-box { background: #060b09; border: 2px dashed #10b981; border-radius: 16px; padding: 18px 24px; display: flex; align-items: center; cursor: pointer; transition: 0.3s; }
+        .file-upload-box { background: #060b09; border: 2px dashed #10b981; border-radius: 16px; padding: 16px 20px; display: flex; align-items: center; cursor: pointer; transition: 0.3s; overflow: hidden; }
         .file-upload-box:hover { border-color: #22c55e; background: rgba(34, 197, 94, 0.02); }
-        .file-upload-box input[type="file"] { border: none; background: transparent; padding: 0; margin: 0; cursor: pointer; font-size: 18px; }
+        .file-upload-box input[type="file"] { border: none; background: transparent; padding: 0; margin: 0; cursor: pointer; font-size: 16px; width: 100%; }
 
-        .submit-container { margin-top: 60px; display: flex; align-items: center; width: 100%; }
+        .submit-container { margin-top: 40px; display: flex; align-items: center; width: 100%; }
         
         button { 
             width: 100%;
-            padding: 22px; 
+            padding: 18px; 
             background: linear-gradient(135deg, #22c55e, #10b981); 
             color: #060b09; 
             border: none; 
             border-radius: 18px; 
-            font-size: 22px; 
+            font-size: 18px; 
             font-weight: 800; 
             cursor: pointer; 
             transition: 0.3s; 
@@ -102,12 +105,38 @@
         .back-link { 
             color: #a7f3d0; 
             text-decoration: none; 
-            font-size: 18px; 
+            font-size: 16px; 
             font-weight: 700; 
             white-space: nowrap;
             transition: 0.2s;
+            margin-top: 20px;
         }
         .back-link:hover { color: #22c55e; text-decoration: underline; }
+
+        @media (max-width: 1024px) {
+            .info-panel { padding: 30px 20px; }
+            .grid-panel { padding: 40px 30px; }
+            .input-matrix { gap: 20px; }
+        }
+
+        @media (max-width: 768px) {
+            .workspace-wrapper { flex-direction: column; }
+            .info-panel { 
+                position: relative; 
+                width: 100%; 
+                height: auto; 
+                border-right: none; 
+                border-bottom: 3px solid #22c55e; 
+                padding: 40px 20px;
+            }
+            .grid-panel { width: 100%; margin-left: 0; padding: 40px 20px; }
+            .brand-hint { margin-top: 20px; }
+        }
+
+        @media (max-width: 480px) {
+            .input-matrix { grid-template-columns: 1fr; }
+            .full-width-field { grid-column: span 1; }
+        }
     </style>
 </head>
 <body>
