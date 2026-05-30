@@ -5,20 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-   <link rel="manifest" href="/static/manifest.json">
-<meta name="theme-color" content="#0d0621">
+    <link rel="manifest" href="/static/manifest.json">
+    <meta name="theme-color" content="#0d0621">
 
-<script>
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/static/service-worker.js')
-        .then(reg => console.log('Service Worker Registered!', reg))
-        .catch(err => console.log('Service Worker Registration Failed:', err));
-    });
-  }
-</script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/static/service-worker.js')
+            .then(reg => console.log('Service Worker Registered!', reg))
+            .catch(err => console.log('Service Worker Registration Failed:', err));
+        });
+      }
+    </script>
    
-   <style>
+    <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
         body { background: #07020d; display: flex; color: white; min-height: 100vh; width: 100vw; overflow-x: hidden; flex-direction: row; }
         
@@ -41,7 +41,7 @@
         .menu a:hover, .menu a.active { background: #07020d; color: #f472b6; border-color: #d946ef; box-shadow: 0 0 15px rgba(217, 70, 239, 0.4); }
         .menu .accent-link { background: rgba(139, 92, 246, 0.2); border: 2px solid #8b5cf6; }
         
-        .main { margin-left: 280px; padding: 40px max(20px, 4vw); width: calc(100% - 280px); min-height: 100vh; }
+        .main { margin-left: 280px; padding: 40px max(20px, 4vw); width: calc(100% - 280px); min-height: 100vh; max-width: 1800px; }
         
         .topbar h1 { font-size: clamp(32px, 5vw, 56px); font-weight: 800; color: white; }
         .topbar h3 { color: #c084fc; font-size: clamp(18px, 2.5vw, 26px); margin-top: 12px; margin-bottom: 40px; }

@@ -31,12 +31,12 @@
         .menu a:hover, .menu a.active { background: #07020d; color: #f472b6; border-color: #d946ef; box-shadow: 0 0 15px rgba(217, 70, 239, 0.4); }
         .menu .accent-link { background: rgba(139, 92, 246, 0.2); border: 2px solid #8b5cf6; }
         
-        .main { margin-left: 280px; padding: 40px max(20px, 4vw); width: calc(100% - 280px); }
+        .main { margin-left: 280px; padding: 40px max(20px, 4vw); width: calc(100% - 280px); min-height: 100vh; max-width: 1800px; }
         
         .topbar h1 { font-size: clamp(32px, 5vw, 56px); font-weight: 800; color: white; }
         .topbar h3 { color: #c084fc; font-size: clamp(18px, 2.5vw, 26px); margin-top: 12px; margin-bottom: 40px; }
         
-        .employee-table { background: #12072b; padding: clamp(20px, 4vw, 40px); border-radius: 32px; border: 2px solid #8b5cf6; }
+        .employee-table { background: #12072b; padding: clamp(20px, 4vw, 40px); border-radius: 32px; border: 2px solid #8b5cf6; width: 100%; }
         .employee-table h2 { font-size: clamp(24px, 3vw, 36px); font-weight: 700; color: #d946ef; margin-bottom: 30px; }
         
         .table-wrapper { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
@@ -233,9 +233,9 @@
         let tr = table.getElementsByTagName("tr");
 
         for (let i = 1; i < tr.length; i++) {
-            let tdID = tr[i].getElementsByTagName("td")[1];   // Column 2: User ID
-            let tdName = tr[i].getElementsByTagName("td")[2]; // Column 3: Full Name
-            let tdDept = tr[i].getElementsByTagName("td")[4]; // Column 5: Department
+            let tdID = tr[i].getElementsByTagName("td")[1];   
+            let tdName = tr[i].getElementsByTagName("td")[2]; 
+            let tdDept = tr[i].getElementsByTagName("td")[4]; 
 
             if (tdName || tdID || tdDept) {
                 let idText = tdID.textContent || tdID.innerText;
