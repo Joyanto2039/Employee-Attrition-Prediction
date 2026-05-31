@@ -227,6 +227,98 @@
             background: #d946ef;
             box-shadow: 0 0 12px #d946ef;
         }
+
+        /* Mobile Optimization and Home Screen Viewport Adaptations */
+        @media (max-width: 992px) {
+            body {
+                flex-direction: column;
+            }
+            .sidebar {
+                position: static;
+                width: 100%;
+                height: auto;
+                padding: 30px 20px;
+                border-right: none;
+                border-bottom: 3px solid #8b5cf6;
+                box-shadow: 0 10px 30px rgba(139, 92, 246, 0.15);
+            }
+            .sidebar h1 {
+                text-align: center;
+                margin-bottom: 25px;
+                font-size: 26px;
+            }
+            .menu {
+                flex-direction: row;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+            .menu a {
+                width: auto;
+                padding: 8px 14px;
+                font-size: 14px;
+                border-radius: 10px;
+            }
+            .menu .accent-link, .menu .sign-out {
+                margin-top: 0;
+            }
+            .main {
+                margin-left: 0;
+                width: 100%;
+                padding: 40px 16px;
+            }
+            .topbar h1 {
+                font-size: 32px;
+                text-align: center;
+                letter-spacing: 0;
+            }
+            .topbar h3 {
+                font-size: 14px;
+                text-align: center;
+                letter-spacing: 2px;
+                margin-bottom: 35px;
+            }
+            .glass-container {
+                padding: 30px 16px;
+                border-radius: 16px;
+            }
+            .glass-container::before, .glass-container::after {
+                width: 30px;
+                height: 30px;
+            }
+            .section {
+                margin-bottom: 35px;
+            }
+            .section h2 {
+                font-size: 20px;
+                margin-bottom: 15px;
+            }
+            .section h2 i {
+                padding: 8px;
+                font-size: 14px;
+            }
+            .section p {
+                font-size: 15px;
+                line-height: 1.6;
+            }
+            .tech-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+                margin-top: 25px;
+            }
+            .tech-card {
+                padding: 25px 20px;
+                border-radius: 12px;
+            }
+            .tech-card h4 {
+                font-size: 18px;
+                margin-bottom: 12px;
+            }
+            .tech-card p {
+                font-size: 14px;
+                line-height: 1.5;
+            }
+        }
     </style>
 </head>
 <body>

@@ -199,6 +199,110 @@
             font-weight: 600;
             text-transform: uppercase;
         }
+
+        /* Responsive Breakpoint for Mobile and Tablet Screens */
+        @media (max-width: 992px) {
+            body {
+                flex-direction: column;
+            }
+            .sidebar {
+                position: static;
+                width: 100%;
+                height: auto;
+                padding: 25px 20px;
+                border-right: none;
+                border-bottom: 3px solid #8b5cf6;
+                text-align: center;
+            }
+            .sidebar h1 {
+                margin-bottom: 25px;
+                font-size: 30px;
+            }
+            .menu {
+                display: flex;
+                justify-content: center;
+                gap: 15px;
+                flex-wrap: wrap;
+            }
+            .menu a {
+                margin-bottom: 0 !important;
+                margin-top: 0 !important;
+                padding: 10px 20px;
+                font-size: 16px;
+            }
+            .main {
+                margin-left: 0;
+                width: 100%;
+                padding: 30px 16px;
+            }
+            .topbar h1 {
+                font-size: 32px;
+                text-align: center;
+            }
+            .topbar h3 {
+                font-size: 16px;
+                text-align: center;
+                margin-bottom: 35px;
+            }
+            .cards {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                margin-bottom: 35px;
+            }
+            .card {
+                padding: 25px;
+                border-radius: 18px;
+            }
+            .card h2 {
+                font-size: 28px;
+            }
+            .employee-profile-box {
+                padding: 25px 16px;
+                border-radius: 18px;
+            }
+            .box-header-container {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+                margin-bottom: 25px;
+            }
+            .box-header-container h2 {
+                font-size: 22px;
+            }
+            .btn-action-main {
+                display: inline-block;
+                width: 100%;
+                padding: 12px 24px;
+                font-size: 16px;
+            }
+            .info-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            .avatar-container {
+                grid-column: span 1;
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+                padding: 20px;
+            }
+            .avatar-details h4 {
+                font-size: 22px;
+            }
+            .avatar-details p {
+                font-size: 14px;
+            }
+            .info-field {
+                padding: 16px;
+            }
+            .info-field label {
+                font-size: 13px;
+            }
+            .info-field div {
+                font-size: 17px;
+                word-break: break-all;
+            }
+        }
     </style>
 </head>
 <body>

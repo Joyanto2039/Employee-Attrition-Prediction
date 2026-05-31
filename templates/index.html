@@ -711,7 +711,7 @@
         top:18px;
         left:18px;
 
-        z-index:999;
+ z-index:999;
 
         text-decoration:none;
 
@@ -748,6 +748,78 @@
         box-shadow:
         0 0 28px rgba(74,222,128,0.55),
         0 12px 25px rgba(0,0,0,0.4);
+    }
+
+    /* Target specific responsive optimization for ultra-clean mobile view compatibility */
+    @media (max-width: 600px) {
+        body {
+            overflow-y: auto !important;
+            height: auto;
+        }
+        .container {
+            height: auto;
+            min-height: 100vh;
+            padding: 75px 16px 30px 16px;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            margin-top: 10px;
+        }
+        .dashboard-btn {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            font-size: 13px;
+            padding: 8px 14px;
+            border-radius: 10px;
+            width: auto;
+        }
+        .field-box {
+            padding: 12px;
+            min-height: auto;
+        }
+        .field-box label {
+            font-size: 15px;
+            margin-bottom: 8px;
+        }
+        input, select {
+            padding: 10px 12px;
+            font-size: 15px;
+            border-radius: 8px;
+        }
+        button {
+            width: 100% !important;
+            margin: 15px 0 0 0;
+            padding: 14px;
+            font-size: 18px !important;
+            border-radius: 14px;
+        }
+        .probability-box {
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 15px;
+        }
+        .stay-prob, .leave-prob {
+            min-width: 100%;
+            padding: 14px;
+            font-size: 16px;
+            border-radius: 14px;
+        }
+        .result {
+            font-size: 18px;
+            padding: 14px 20px;
+            width: 100%;
+            border-radius: 14px;
+            margin-top: 15px;
+        }
+        .risk-box {
+            font-size: 18px;
+            padding: 10px 20px;
+            width: 100%;
+            text-align: center;
+            border-radius: 12px;
+        }
     }
     </style>
 </head>

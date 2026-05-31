@@ -141,6 +141,104 @@
         .filter-select:focus {
             border-color: #d946ef;
         }
+
+        /* Responsive Breakpoint for Mobile Home Screens */
+        @media (max-width: 992px) {
+            body {
+                flex-direction: column;
+            }
+            .sidebar {
+                position: static;
+                width: 100%;
+                height: auto;
+                padding: 30px 20px;
+                border-right: none;
+                border-bottom: 3px solid #8b5cf6;
+            }
+            .sidebar h1 {
+                text-align: center;
+                margin-bottom: 25px;
+                font-size: 26px;
+            }
+            .menu {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+            .menu a {
+                margin-bottom: 0 !important;
+                margin-top: 0 !important;
+                padding: 8px 14px;
+                font-size: 14px;
+                border-radius: 10px;
+                width: auto;
+            }
+            .main {
+                margin-left: 0;
+                width: 100%;
+                padding: 30px 16px;
+            }
+            .topbar h1 {
+                font-size: 32px;
+                text-align: center;
+            }
+            .topbar h3 {
+                font-size: 16px;
+                text-align: center;
+                margin-bottom: 35px;
+            }
+            .employee-table {
+                padding: 25px 16px;
+                border-radius: 20px;
+                width: 100%;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            .employee-table h2 {
+                font-size: 22px;
+                text-align: center;
+                margin-bottom: 25px;
+            }
+            .filter-panel {
+                flex-direction: column;
+                gap: 12px;
+                margin-bottom: 25px;
+            }
+            .search-input, .filter-select {
+                padding: 12px 16px;
+                font-size: 15px;
+                border-radius: 10px;
+                width: 100%;
+            }
+            table {
+                min-width: 850px; /* Ensures table remains readable upon scrolling */
+            }
+            th {
+                padding: 16px 12px;
+                font-size: 15px;
+            }
+            td {
+                padding: 16px 12px;
+                font-size: 15px;
+            }
+            .profile {
+                width: 50px;
+                height: 50px;
+            }
+            .action-btn, .btn-predict-green {
+                padding: 10px 16px;
+                font-size: 14px;
+                border-radius: 10px;
+            }
+            .btn-predict-green {
+                opacity: 1 !important;
+                visibility: visible !important;
+                transform: none !important;
+                margin-left: 0;
+            }
+        }
     </style>
 </head>
 <body>

@@ -138,6 +138,88 @@
             transition: 0.2s;
         }
         .back-link:hover { color: #f59e0b; text-decoration: underline; }
+
+        /* Responsive Optimization Breakpoint for Mobile and Tablet Devices */
+        @media (max-width: 992px) {
+            .workspace-wrapper {
+                flex-direction: column;
+            }
+            .info-panel {
+                position: static;
+                width: 100%;
+                height: auto;
+                padding: 40px 20px;
+                border-right: none;
+                border-bottom: 3px solid #d97706;
+                gap: 30px;
+            }
+            .info-panel-header h2 {
+                font-size: 32px;
+                text-align: center;
+            }
+            .info-panel-header p {
+                font-size: 16px;
+                text-align: center;
+                margin-top: 12px;
+            }
+            .brand-hint {
+                margin-top: 25px;
+                padding: 20px;
+                border-radius: 12px;
+                border-left: none;
+                border-top: 4px solid #d946ef;
+                text-align: center;
+            }
+            .brand-hint h4 {
+                font-size: 18px;
+            }
+            .brand-hint p {
+                font-size: 14px;
+            }
+            .back-link {
+                text-align: center;
+                font-size: 16px;
+                display: block;
+                margin-top: 10px;
+            }
+            .grid-panel {
+                width: 100%;
+                margin-left: 0;
+                padding: 40px 16px;
+            }
+            .input-matrix {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            .full-width-field {
+                grid-column: span 1;
+            }
+            .matrix-field label {
+                font-size: 14px;
+                margin-bottom: 8px;
+            }
+            .matrix-field input, .matrix-field select {
+                padding: 14px 18px;
+                font-size: 16px;
+                border-radius: 12px;
+            }
+            .file-upload-box {
+                padding: 14px 18px;
+                border-radius: 12px;
+            }
+            .file-upload-box input[type="file"] {
+                font-size: 15px;
+                width: 100%;
+            }
+            .submit-container {
+                margin-top: 35px;
+            }
+            button {
+                padding: 16px;
+                font-size: 18px;
+                border-radius: 14px;
+            }
+        }
     </style>
 </head>
 <body>
